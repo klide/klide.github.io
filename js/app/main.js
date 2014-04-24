@@ -30,7 +30,7 @@
      */
     LeafNote.prototype.play = function (note) {
         console.log('Play Note:', note);
-        MIDI.noteOn(0, note, 127, 0);
+        MIDI.noteOn(0, note, 255, 0);
 
         // Hold the note for the given duration
         setTimeout(function() {
