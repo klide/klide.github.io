@@ -9,7 +9,7 @@ body {
 }
 
 .btn {
-    display: inline-block;
+    display: block;
     margin-bottom: 0;
     font-weight: 400;
     text-align: center;
@@ -33,7 +33,7 @@ body {
 .btn-primary:focus,
 .btn-primary:active {
     color: #ffffff;
-    background-color: #3276b1;
+    background-color: #74b224;
     border-color: #285e8e;
 }
 
