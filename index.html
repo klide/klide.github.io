@@ -15,10 +15,10 @@
     <script src="./js/lib/util/queue.js" type="text/javascript"></script>
     <script src="./js/lib/util/event.js" type="text/javascript"></script>
 </head>
-<body>
-    <div class="screen-gradient-a">
-        <div class="key-screen align-center">
-            <div class="screen-gradient-b">
+<body class="theme1">
+    <div class="background-gradient">
+        <div class="live-play-screen">
+            <div class="keys-container">
                 <button class="key play" data-note="70"></button>
                 <button class="key play" data-note="72"></button>
                 <button class="key play" data-note="74"></button>
@@ -27,9 +27,10 @@
                 <button class="key play" data-note="79"></button>
                 <button class="key play" data-note="81"></button>
                 <button class="key play" data-note="82"></button>
-                <div class="toolbar"></div>
-                <div class="logo-glow"></div>
             </div>
+            <div class="logo"></div>
+            <input class="volume-input" type="range" name="volumn" min="0" max="10">
+            <div class="toolbar"></div>
         </div>
     </div>
     <script src="./js/app/main.js" type="text/javascript"></script>
