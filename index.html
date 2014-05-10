@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>leafNote - Sample MIDI Player</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
+    <script src="./js/lib/shim/Base64.js" type="text/javascript"></script>
+    <script src="./js/lib/shim/Base64binary.js" type="text/javascript"></script>
+    <script src="./js/lib/shim/WebAudioAPI.js" type="text/javascript"></script>
+    <!-- MIDI.js Plugins -->
+    <script src="./js/lib/midi/audioDetect.js" type="text/javascript"></script>
+    <script src="./js/lib/midi/plugin.js" type="text/javascript"></script>
+    <script src="./js/lib/util/dom_request_xhr.js" type="text/javascript"></script>
+    <script src="./js/lib/util/dom_request_script.js" type="text/javascript"></script>
+    <script src="./js/lib/util/queue.js" type="text/javascript"></script>
+    <script src="./js/lib/util/event.js" type="text/javascript"></script>
+</head>
+<body class="theme1">
+    <div class="background-gradient">
+        <div class="live-play-screen">
+            <div class="keys-container">
+                <button class="key play" data-note="70"></button>
+                <button class="key play" data-note="72"></button>
+                <button class="key play" data-note="74"></button>
+                <button class="key play" data-note="75"></button>
+                <button class="key play" data-note="77"></button>
+                <button class="key play" data-note="79"></button>
+                <button class="key play" data-note="81"></button>
+                <button class="key play" data-note="82"></button>
+            </div>
+            <div class="logo"></div>
+            <input class="volume-input" type="range" name="volumn" min="0" max="10">
+            <div class="toolbar"></div>
+        </div>
+    </div>
+    <script src="./js/app/main.js" type="text/javascript"></script>
+</body>
+</html>
