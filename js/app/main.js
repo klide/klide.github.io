@@ -5,9 +5,11 @@
      * Basic methods to initialize and play a note on a click of a button
      */
     var LeafNote = function () {
-        this.buttons = document.getElementsByClassName('play');
+        // Some Basic Default Settings
+        this.volume = 200;
+        this.pitch = 5;
         this.instrument = 'acoustic_grand_piano';
-        this.noteDuration = 500;
+        this.noteDuration = 700;
     };
 
     /**
@@ -15,28 +17,59 @@
      */
     LeafNote.prototype.init = function () {
         var self = this;
-        // Loops through the buttons and adds a 'click' event to each button
-        // so when a button is clicked, this.play() is called
-        for (var i = 0; i < this.buttons.length; i++) {
-            this.buttons[i].addEventListener('click', function (event) {
-                self.play(event.target.getAttribute('data-note'));
+
+        // Some Elements the User will Interact with
+        var keyPads = document.getElementsByClassName('play'),
+            volumeSlider = document.getElementById('volumeSlider'),
+            instrumentSelector = document.getElementById('instrumentSelector');
+
+        // Loops through the buttons and handle each of the following events
+        for (var i = 0; i < keyPads.length; i++) {
+            // Play a note when mouse is down
+            keyPads[i].addEventListener('mousedown', function (event) {
+                self.playNote(event.target.getAttribute('data-note'));
+            });
+            // Stops playing a note when mouse is up
+            keyPads[i].addEventListener('mouseup', function (event) {
+                self.stopNote(event.target.getAttribute('data-note'));
             });
         }
+
+        // Listener for Volume Slider
+        volumeSlider.addEventListener('change', function (event) {
+            self.volume = event.target.value * 25.5;
+        });
+
+        // Listener for Instrument Selector
+        instrumentSelector.addEventListener('click', function () {
+            self.getDialog();
+        });
     };
 
     /**
      * Plays a Note (whatever the note assigned to the button)
      * @param {int} note The note to play
      */
-    LeafNote.prototype.play = function (note) {
-        console.log('Play Note:', note);
-        MIDI.noteOn(0, note, 255, 0);
-
-        // Hold the note for the given duration
-        setTimeout(function() {
-            MIDI.noteOff(0, note, 0);
-        }, this.noteDuration);
+    LeafNote.prototype.playNote = function (note) {
+        console.log('Playing Note:', note, 'Volume:', this.volume);
+        MIDI.noteOn(0, note, this.volume, 0);
     };
+
+    /**
+     * Stops playing a Note (whatever the note assigned to the button)
+     * @param {int} note The note to stop playing
+     */
+    LeafNote.prototype.stopNote = function (note) {
+        MIDI.noteOff(0, note, 0);
+    };
+
+    /**
+     * Create the Dialog and Return it
+     */
+    LeafNote.prototype.getDialog = function () {
+        alert('Coming Soon!');
+    };
+
 
     /**
      * MIDI Loader / Config
