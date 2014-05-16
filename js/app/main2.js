@@ -18,7 +18,7 @@
         // Loops through the buttons and adds a 'click' event to each button
         // so when a button is clicked, this.play() is called
         for (var i = 0; i < this.buttons.length; i++) {
-            this.buttons[i].addEventListener('mousedown', function (event) {
+            this.buttons[i].addEventListener('click', function (event) {
                 self.play(event.target.getAttribute('data-note'));
             });
         }
