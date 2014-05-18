@@ -7,7 +7,7 @@
     var LeafNote = function () {
         // Some Basic Default Settings
         this.volume = 200;
-        this.pitch = 5;
+        this.pitch = 0;
         this.instrument = 'acoustic_grand_piano';
         this.noteDuration = 700;
     };
@@ -21,6 +21,7 @@
         // Some Elements the User will Interact with
         var keyPads = document.getElementsByClassName('play'),
             volumeSlider = document.getElementById('volumeSlider'),
+            pitchSlider = document.getElementById('pitchSlider'),
             instrumentSelector = document.getElementById('instrumentSelector');
 
         // Loops through the buttons and handle each of the following events
@@ -40,6 +41,11 @@
             self.volume = event.target.value * 25.5;
         });
 
+        // Listener for Pitch Slider
+        pitchSlider.addEventListener('change', function (event) {
+            self.pitch = (event.target.value - 3) * 12;
+        });
+
         // Listener for Instrument Selector
         instrumentSelector.addEventListener('click', function () {
             self.getDialog();
@@ -51,8 +57,8 @@
      * @param {int} note The note to play
      */
     LeafNote.prototype.playNote = function (note) {
-        console.log('Playing Note:', note, 'Volume:', this.volume);
-        MIDI.noteOn(0, note, this.volume, 0);
+        console.log('Playing Note:', parseInt(note, 10) + this.pitch, 'Volume:', this.volume);
+        MIDI.noteOn(0, parseInt(note, 10) + this.pitch, this.volume, 0);
     };
 
     /**
