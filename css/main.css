@@ -120,7 +120,8 @@ button:active {
     margin-left: 0px;
 }
 
-.theme1 .key:active {
+.theme1 .key:active,
+.theme1 .key.active {
     background: linear-gradient(to right, rgba(220,112,95,0.95) 0%,rgba(209,102,84,0.90) 50%,rgba(217,131,106,0.95) 50%,rgba(219,133,106,0.90) 100%);
     box-shadow: 0px 0px 30px 1px rgba(255, 255, 255, .4);
 }
