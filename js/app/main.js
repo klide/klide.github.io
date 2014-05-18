@@ -28,11 +28,11 @@
         for (var i = 0; i < keyPads.length; i++) {
             // Play a note when mouse is down
             keyPads[i].addEventListener('mousedown', function (event) {
-                self.playNote(event.target.getAttribute('data-note'));
+                self.playNote(parseInt(event.target.getAttribute('data-note'), 10) + self.pitch);
             });
             // Stops playing a note when mouse is up
             keyPads[i].addEventListener('mouseup', function (event) {
-                self.stopNote(event.target.getAttribute('data-note'));
+                self.stopNote(parseInt(event.target.getAttribute('data-note'), 10) + self.pitch);
             });
         }
 
@@ -57,8 +57,8 @@
      * @param {int} note The note to play
      */
     LeafNote.prototype.playNote = function (note) {
-        console.log('Playing Note:', parseInt(note, 10) + this.pitch, 'Volume:', this.volume);
-        MIDI.noteOn(0, parseInt(note, 10) + this.pitch, this.volume, 0);
+        console.log('Playing Note:', note, 'Volume:', this.volume);
+        MIDI.noteOn(0, note, this.volume, 0);
     };
 
     /**
