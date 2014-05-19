@@ -1,0 +1,6 @@
+@media (max-width: 767px) {
+    .theme1 .toolbar {
+        padding: 7px;
+        background: rgba(255, 255, 255, .32);
+    }
+}

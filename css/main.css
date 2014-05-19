@@ -146,8 +146,8 @@ button:active {
 /** Toolbar Styles **/
 .theme1 .toolbar {
     clear: both;
-    padding: 7px;
-    background: rgba(255, 255, 255, .32);
+    padding: 0px 10px;
+    background: none;
 }
 .theme1 .toolbar .instrument-button {
     width: 374px;
