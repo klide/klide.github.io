@@ -127,6 +127,10 @@
             $pitchSlider = $('#pitchSlider'),
             $instrumentSelector = $('#instrumentSelector');
 
+        // Display the leafNote App Container
+        $('#leafNoteApp').fadeIn('fast');
+        $('#loader').hide();
+
         // For any of the keyPads Play a note when mouse is down
         $keyPads.on('mousedown', function () {
             self.playNote(parseInt($(this).attr('data-note'), 10) + self.pitch, $(this));
@@ -338,9 +342,11 @@
     /**
      * MIDI Loader / Config
      */
+
     MIDI.loadPlugin({
         USE_XHR: false,
         soundfontUrl: './js/assets/soundfont/',
+        instruments: ['acoustic_grand_piano', 'accordion', 'acoustic_guitar_nylon', 'acoustic_guitar_steel', 'alto_sax', 'overdriven_guitar', 'music_box', 'synth_strings_1', 'violin'],
         callback: function () {
             // Create a new instance of LeafNote() and call init()
             var leafNote = new LeafNote();

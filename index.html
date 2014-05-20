@@ -22,40 +22,43 @@
 </head>
 <body class="theme1">
     <div class="background-gradient">
-        <div class="live-play-screen">
-            <div class="keys-container">
-                <div class="row-a">
-                    <div class="key-group">
-                        <button class="key shadow play" data-note="61"></button>
-                        <button class="key shadow play" data-note="63"></button>
+        <div id="loader">Loading Sound Files...</div>
+        <div id="leafNoteApp">
+            <div class="live-play-screen">
+                <div class="keys-container">
+                    <div class="row-a">
+                        <div class="key-group">
+                            <button class="key shadow play" data-note="61"></button>
+                            <button class="key shadow play" data-note="63"></button>
+                        </div>
+                        <div class="key-group">
+                            <button class="key shadow play" data-note="66"></button>
+                            <button class="key shadow play" data-note="68"></button>
+                            <button class="key shadow play" data-note="70"></button>
+                        </div>
                     </div>
-                    <div class="key-group">
-                        <button class="key shadow play" data-note="66"></button>
-                        <button class="key shadow play" data-note="68"></button>
-                        <button class="key shadow play" data-note="70"></button>
+                    <div class="row-b">
+                        <button class="key shadow play" data-note="60"></button>
+                        <button class="key shadow play" data-note="62"></button>
+                        <button class="key shadow play" data-note="64"></button>
+                        <button class="key shadow play" data-note="65"></button>
+                        <button class="key shadow play" data-note="67"></button>
+                        <button class="key shadow play" data-note="69"></button>
+                        <button class="key shadow play" data-note="71"></button>
+                        <button class="key shadow play" data-note="72"></button>
                     </div>
                 </div>
-                <div class="row-b">
-                    <button class="key shadow play" data-note="60"></button>
-                    <button class="key shadow play" data-note="62"></button>
-                    <button class="key shadow play" data-note="64"></button>
-                    <button class="key shadow play" data-note="65"></button>
-                    <button class="key shadow play" data-note="67"></button>
-                    <button class="key shadow play" data-note="69"></button>
-                    <button class="key shadow play" data-note="71"></button>
-                    <button class="key shadow play" data-note="72"></button>
+                <div class="logo"></div>
+                <div class="pitch-container">
+                    <label for="pitch">Pitch</label>
+                    <input id="pitchSlider" class="pitch-input" type="range" name="pitch" min="0" max="6">
                 </div>
-            </div>
-            <div class="logo"></div>
-            <div class="pitch-container">
-                <label for="pitch">Pitch</label>
-                <input id="pitchSlider" class="pitch-input" type="range" name="pitch" min="0" max="6">
-            </div>
-            <div class="volume-container">
-                <input id="volumeSlider" class="volume-input" type="range" name="volume" min="0" max="10">
-            </div>
-            <div class="toolbar">
-                <button id="instrumentSelector" class="instrument-button shadow">Instrument Options</button>
+                <div class="volume-container">
+                    <input id="volumeSlider" class="volume-input" type="range" name="volume" min="0" max="10">
+                </div>
+                <div class="toolbar">
+                    <button id="instrumentSelector" class="instrument-button shadow">Instrument Options</button>
+                </div>
             </div>
         </div>
     </div>

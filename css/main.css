@@ -21,21 +21,23 @@ body {
 }
 
 /** Basic Elements **/
-button {
-    border-radius: 5px;
-    border: 1px solid rgba(255, 255, 255, .15);
-    color: #fff;
-    text-transform: uppercase;
-    font-size: .95em;
-    background: linear-gradient(to bottom, rgba(255, 230, 245, 0.27) 0%,rgba(230, 220, 240, 0.24) 50%,rgba(255,255,255,0.1) 51%,rgba(255,255,255,0) 100%);
-}
 input:focus,
 button:focus {
     outline: none;
 }
-button:active {
-    background: linear-gradient(to bottom, rgba(218, 202, 212, 0.27) 0%,rgba(188, 180, 197, 0.24) 50%,rgba(0, 0, 0, 0.021) 51%,rgba(0, 0, 0, 0.025) 100%);
-    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
+select {
+    font-size: 2em!important;
+    width: 100%;
+}
+
+#leafNoteApp {
+    display: none;
+}
+#loader {
+    text-align: center;
+    font-size: 2em;
+    color: #fff;
+    padding: 120px 0px 0px;
 }
 
 /****************************************
@@ -61,6 +63,23 @@ button:active {
     box-shadow: 0 2px 6px #000;
 }
 
+/** Form Elements **/
+.theme1 button {
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, .15);
+    color: #fff;
+    text-transform: uppercase;
+    font-size: .95em;
+    background: linear-gradient(to bottom, rgba(255, 230, 245, 0.27) 0%,rgba(230, 220, 240, 0.24) 50%,rgba(255,255,255,0.1) 51%,rgba(255,255,255,0) 100%);
+}
+.theme1 button:hover {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.32) 0%,rgba(251, 247, 255, 0.27) 50%,rgba(255,255,255,0.1) 51%,rgba(255,255,255,.03) 100%);
+}
+.theme1 button:active {
+    background: linear-gradient(to bottom, rgba(218, 202, 212, 0.27) 0%,rgba(188, 180, 197, 0.24) 50%,rgba(0, 0, 0, 0.021) 51%,rgba(0, 0, 0, 0.025) 100%);
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
 /** Labels **/
 .theme1 label {
     display: block;
@@ -68,7 +87,6 @@ button:active {
     text-transform: uppercase;
     line-spacing: -3px;
 }
-
 
 .theme1 .logo {
     position: absolute;
@@ -102,10 +120,18 @@ button:active {
     border: 1px solid rgba(255, 255, 255, .2);
     background: linear-gradient(to right, rgba(255, 192, 232, 0.1) 0%,rgba(255, 218, 237, 0.1) 50%,rgba(255, 213, 249, 0.28) 50%,rgba(249, 216, 255, 0.28) 100%);
 }
+.theme1 .key:hover {
+    background: linear-gradient(to right, rgba(255, 192, 232, 0.13) 0%,rgba(255, 218, 237, 0.15) 50%,rgba(255, 213, 249, 0.36) 50%,rgba(249, 216, 255, 0.34) 100%);
+}
 .theme1 .row-a .key {
     height: 90px;
     background: linear-gradient(to right, rgba(197, 159, 191, 0.9) 0%,rgba(195, 158, 186, 0.9) 50%,rgba(209, 176, 202, 0.9) 50%,rgba(207, 185, 200, 0.9) 100%);
 }
+.theme1 .row-a .key:hover {
+    background: linear-gradient(to right, rgba(203, 163, 198, 0.94) 0%,rgba(199, 162, 190, 0.96) 50%,rgba(209, 176, 202, 0.96) 50%,rgba(207, 185, 200, 0.93) 100%);
+}
+
+
 .theme1 .row-a {
     position:absolute;
     height: 80px;
@@ -122,7 +148,7 @@ button:active {
 
 .theme1 .key:active,
 .theme1 .key.active {
-    background: linear-gradient(to right, rgba(220,112,95,0.95) 0%,rgba(209,102,84,0.90) 50%,rgba(217,131,106,0.95) 50%,rgba(219,133,106,0.90) 100%);
+    background: linear-gradient(to right, rgba(231, 91, 70, 0.95) 0%,rgba(255, 113, 77, 0.9) 50%,rgba(245, 136, 98, 0.95) 50%,rgba(216,130,106,0.90) 100%)!important;
     box-shadow: 0px 0px 30px 1px rgba(255, 255, 255, .4);
 }
 
@@ -152,6 +178,36 @@ button:active {
 .theme1 .toolbar .instrument-button {
     width: 374px;
     height: 66px;
+}
+
+/** jQuery Overrides **/
+.theme1 .ui-widget-header {
+    border: #332339;
+    background: linear-gradient(to bottom, rgba(100,69,109,1) 0%,rgba(104,67,97,1) 50%,rgba(66,45,73,1) 100%);
+}
+.theme1 .ui-widget-content {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%,rgba(223, 223, 223, 1) 50%,rgba(255, 255, 255, 1) 100%);
+}
+.theme1 .ui-state-default .ui-icon {
+    background-image: url("jquery/images/ui-icons_ffffff_256x240.png");
+}
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+    border: 1px solid rgba(20, 20, 20, .2);
+    background: linear-gradient(to bottom, rgba(255, 230, 245, 0.27) 0%,rgba(230, 220, 240, 0.24) 50%,rgba(255,255,255,0.1) 51%,rgba(255,255,255,0) 100%);
+    box-shadow: 0px 1px 5px rgba(0,0,0,.18);
+    color: #572963;
+}
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+    border: 1px solid rgba(20, 20, 20, .2);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.35) 0%,rgba(251, 247, 255, 0.30) 50%,rgba(255,255,255,0.13) 51%,rgba(255,255,255,.05) 100%);
+    box-shadow: 0px 1px 5px rgba(0,0,0,.18)
 }
 
 /****************************************
