@@ -125,11 +125,16 @@
         var $keyPads = $('.play'),
             $volumeSlider = $('#volumeSlider'),
             $pitchSlider = $('#pitchSlider'),
-            $instrumentSelector = $('#instrumentSelector');
+            $instrumentSelector = $('#instrumentSelector'),
+            $options = $('#options');
 
         // Display the leafNote App Container
         $('#leafNoteApp').fadeIn('fast');
-        $('#loader').hide();
+        $('#loader').fadeOut('fast');
+
+        /************************/
+        /** Event Bindings ******/
+        /************************/
 
         // For any of the keyPads Play a note when mouse is down
         $keyPads.on('mousedown', function () {
@@ -149,19 +154,24 @@
             $keyPads.removeClass('active');
         });
 
-        // Listener for Volume Slider
+        // Volume Slider
         $volumeSlider.on('change', function () {
             self.volume = parseInt($(this).val(), 10) * 25.5;
         });
 
-        // Listener for Pitch Slider
+        // Pitch Slider
         $pitchSlider.on('change', function () {
             self.pitch = (parseInt($(this).val(), 10) - 3) * 12;
         });
 
-        // Listener for Instrument Selector
+        // Instrument Selector
         $instrumentSelector.on('click', function () {
             self.getInstrumentOptions();
+        });
+
+        // Options
+        $options.on('click', function () {
+            alert('Coming soon!');
         });
     };
 
@@ -346,7 +356,8 @@
     MIDI.loadPlugin({
         USE_XHR: false,
         soundfontUrl: './js/assets/soundfont/',
-        instruments: ['acoustic_grand_piano', 'accordion', 'acoustic_guitar_nylon', 'acoustic_guitar_steel', 'alto_sax', 'overdriven_guitar', 'music_box', 'synth_strings_1', 'violin'],
+        // Commented out Instruments for now... Causes bad Lag in FireFox
+        // instruments: ['acoustic_grand_piano', 'accordion', 'acoustic_guitar_nylon', 'acoustic_guitar_steel', 'alto_sax', 'overdriven_guitar', 'music_box', 'synth_strings_1', 'violin'],
         callback: function () {
             // Create a new instance of LeafNote() and call init()
             var leafNote = new LeafNote();

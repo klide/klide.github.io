@@ -22,7 +22,10 @@
 </head>
 <body class="theme1">
     <div class="background-gradient">
-        <div id="loader">Loading Sound Files...</div>
+        <div id="loader">
+            <img class="logo-animated" src="./images/logo-animated.gif" alt="leafNote" />
+            <h2>Loading Sound Files...</h2>
+        </div>
         <div id="leafNoteApp">
             <div class="live-play-screen">
                 <div class="keys-container">
@@ -54,10 +57,12 @@
                     <input id="pitchSlider" class="pitch-input" type="range" name="pitch" min="0" max="6">
                 </div>
                 <div class="volume-container">
+                    <i class="icon-volume"></i>
                     <input id="volumeSlider" class="volume-input" type="range" name="volume" min="0" max="10">
                 </div>
                 <div class="toolbar">
                     <button id="instrumentSelector" class="instrument-button shadow">Instrument Options</button>
+                    <span id="options" class="icon-option"></span>
                 </div>
             </div>
         </div>
