@@ -1,0 +1,391 @@
+/** Basic Styling / Global Styles **/
+html {
+    height: 100%;
+}
+body {
+    height: inherit;
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+    font-family: Helvetica, Sans-Serif;
+    background: url('../images/gradient.jpg') #322338 0px 0px repeat-x;
+}
+.align-center {
+    text-align: center;
+}
+.pull-left {
+    float: left;
+}
+.shadow {
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.3);
+}
+
+/** Basic Elements **/
+input:focus,
+button:focus {
+    outline: none;
+}
+button:hover {
+    cursor: pointer;
+}
+select {
+    width: 100%;
+}
+
+#leafNoteApp {
+
+    display: none;
+}
+#loader {
+    position: relative;
+    text-align: center;
+    color: #fff;
+    padding: 90px 0px 0px;
+    margin-bottom: -135px;
+}
+#loader h2 {
+    font-weight: normal;
+    font-size: 1.25em;
+    margin: -30px 0px 0px;
+    font-style: italic;
+    border: 1px solid rgba(255, 255, 255, .4);
+    border-right: 0px;
+    border-left: 0px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, .2);
+    padding: 18px 0px;
+    background: rgba(255, 255, 255, .2);
+}
+#loader .logo-animated {
+    margin: 0px 0px -161px -4px;
+}
+
+/****************************************
+*********** Theme 1 Sample **************
+*****************************************/
+
+/** Slider Styles **/
+.theme1 input[type='range'] {
+    -webkit-appearance: none;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 2px #000;
+    background: linear-gradient(to right, #d34622, #f66d32);
+    background: -webkit-linear-gradient(left, #d34622, #f66d32);
+    height: 8px;
+    vertical-align: middle;
+}
+.theme1 input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: #df5735;
+    width: 20px;
+    height: 20px;
+    background: url('../images/slider-button.png') 0px 0px no-repeat;
+    border-radius: 20px;
+    box-shadow: 0 2px 6px #000;
+}
+
+/** Form Elements **/
+.theme1 button {
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, .15);
+    color: #fff;
+    text-transform: uppercase;
+    font-size: .95em;
+    background: linear-gradient(to bottom, rgba(255, 230, 245, 0.27) 0%,rgba(230, 220, 240, 0.24) 50%,rgba(255,255,255,0.1) 51%,rgba(255,255,255,0) 100%);
+    background: -webkit-linear-gradient(top, rgba(255, 230, 245, 0.27) 0%,rgba(230, 220, 240, 0.24) 50%,rgba(255,255,255,0.1) 51%,rgba(255,255,255,0) 100%);
+}
+.theme1 button:hover {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.32) 0%,rgba(251, 247, 255, 0.27) 50%,rgba(255,255,255,0.1) 51%,rgba(255,255,255,.03) 100%);
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.32) 0%,rgba(251, 247, 255, 0.27) 50%,rgba(255,255,255,0.1) 51%,rgba(255,255,255,.03) 100%);
+}
+.theme1 button:active {
+    background: linear-gradient(to bottom, rgba(218, 202, 212, 0.27) 0%,rgba(188, 180, 197, 0.24) 50%,rgba(0, 0, 0, 0.021) 51%,rgba(0, 0, 0, 0.025) 100%);
+    background: -webkit-linear-gradient(top, rgba(218, 202, 212, 0.27) 0%,rgba(188, 180, 197, 0.24) 50%,rgba(0, 0, 0, 0.021) 51%,rgba(0, 0, 0, 0.025) 100%);
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+/** Labels **/
+.theme1 label {
+    display: block;
+    color: #fff;
+    text-transform: uppercase;
+    line-spacing: -3px;
+}
+
+.theme1 .logo {
+    position: absolute;
+    margin: 8px 0px 0px 240px;
+    width: 167px;
+    height: 96px;
+    background: url('../images/logo.png') top center no-repeat;
+}
+.theme1 .live-play-screen {
+    width: 650px;
+    margin: 0px auto;
+}
+
+.theme1 .keys-container {
+    position: relative;
+    text-align: center;
+}
+
+.theme1 .background-gradient {
+    height: inherit;
+    min-height: 400px;  /** Temporary for now **/
+    background: url('../images/background.jpg') top center no-repeat;
+}
+
+/** Keys Styling ***/
+.theme1 .key {
+    margin: 0px -1px;
+    width: 77px;
+    height: 160px;
+    border-radius: 0px 0px 4px 4px;
+    border: 1px solid rgba(255, 255, 255, .2);
+    background: linear-gradient(to right, rgba(255, 192, 232, 0.1) 0%,rgba(255, 218, 237, 0.1) 50%,rgba(255, 213, 249, 0.28) 50%,rgba(249, 216, 255, 0.28) 100%);
+    background: -webkit-linear-gradient(left, rgba(255, 192, 232, 0.1) 0%,rgba(255, 218, 237, 0.1) 50%,rgba(255, 213, 249, 0.28) 50%,rgba(249, 216, 255, 0.28) 100%);
+}
+.theme1 .key:hover {
+    background: linear-gradient(to right, rgba(255, 192, 232, 0.13) 0%,rgba(255, 218, 237, 0.15) 50%,rgba(255, 213, 249, 0.36) 50%,rgba(249, 216, 255, 0.34) 100%);
+    background: -webkit-linear-gradient(left, rgba(255, 192, 232, 0.13) 0%,rgba(255, 218, 237, 0.15) 50%,rgba(255, 213, 249, 0.36) 50%,rgba(249, 216, 255, 0.34) 100%);
+}
+.theme1 .row-a .key {
+    height: 90px;
+    background: linear-gradient(to right, rgba(197, 159, 191, 0.9) 0%,rgba(195, 158, 186, 0.9) 50%,rgba(209, 176, 202, 0.9) 50%,rgba(207, 185, 200, 0.9) 100%);
+    background: -webkit-linear-gradient(left, rgba(197, 159, 191, 0.9) 0%,rgba(195, 158, 186, 0.9) 50%,rgba(209, 176, 202, 0.9) 50%,rgba(207, 185, 200, 0.9) 100%);
+}
+.theme1 .row-a .key:hover {
+    background: linear-gradient(to right, rgba(203, 163, 198, 0.94) 0%,rgba(199, 162, 190, 0.96) 50%,rgba(209, 176, 202, 0.96) 50%,rgba(207, 185, 200, 0.93) 100%);
+    background: -webkit-linear-gradient(left, rgba(203, 163, 198, 0.94) 0%,rgba(199, 162, 190, 0.96) 50%,rgba(209, 176, 202, 0.96) 50%,rgba(207, 185, 200, 0.93) 100%);
+}
+
+.theme1 .row-a {
+    position:absolute;
+    height: 80px;
+    top: 0px;
+    left: 50px;
+}
+.theme1 .row-a .key-group {
+    float: left;
+    margin-left: 83px;
+}
+.theme1 .row-a .key-group:first-child {
+    margin-left: 0px;
+}
+
+.theme1 .key:active,
+.theme1 .key.active {
+    background: linear-gradient(to right, rgba(231, 91, 70, 0.95) 0%,rgba(255, 113, 77, 0.9) 50%,rgba(245, 136, 98, 0.95) 50%,rgba(216,130,106,0.90) 100%)!important;
+    background: -webkit-linear-gradient(left, rgba(231, 91, 70, 0.95) 0%,rgba(255, 113, 77, 0.9) 50%,rgba(245, 136, 98, 0.95) 50%,rgba(216,130,106,0.90) 100%)!important;
+    box-shadow: 0px 0px 30px 1px rgba(255, 255, 255, .4);
+}
+
+/** Volume and Pitch Slider Styles **/
+.theme1 .volume-container {
+    float: right;
+    margin: 27px 15px 19px;
+}
+.theme1 .volume-container .volume-input {
+    margin-top: 14px;
+}
+
+.theme1 .pitch-container {
+    float: left;
+    margin: 22px 15px 26px;
+}
+
+.theme1 .volume-container label,
+.theme1 .pitch-container label {
+    font-size: .85em;
+    margin-left: 2px;
+}
+
+/** Toolbar Styles **/
+.theme1 .toolbar {
+    clear: both;
+    padding: 0px 10px;
+    background: none;
+}
+.theme1 .toolbar .instrument-button {
+    width: 374px;
+    height: 66px;
+}
+.theme1 .toolbar #options {
+    margin: 8px 5px 0px;
+    float: right;
+}
+.theme1 .toolbar #options:hover {
+    opacity: .7;
+    cursor: pointer;
+}
+
+/** jQuery Overrides **/
+.theme1 .ui-widget-header {
+    border: #332339;
+    background: linear-gradient(to bottom, rgba(100,69,109,1) 0%,rgba(104,67,97,1) 50%,rgba(66,45,73,1) 100%);
+    background: -webkit-linear-gradient(top, rgba(100,69,109,1) 0%,rgba(104,67,97,1) 50%,rgba(66,45,73,1) 100%);
+}
+.theme1 .ui-widget-content {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%,rgba(223, 223, 223, 1) 50%,rgba(255, 255, 255, 1) 100%);
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(223, 223, 223, 1) 50%,rgba(255, 255, 255, 1) 100%);
+}
+.theme1 .ui-state-default .ui-icon {
+    background-image: url("jquery/images/ui-icons_ffffff_256x240.png");
+}
+.theme1 .ui-state-default,
+.theme1 .ui-widget-content .ui-state-default,
+.theme1 .ui-widget-header .ui-state-default {
+    border: 1px solid rgba(20, 20, 20, .2);
+    background: linear-gradient(to bottom, rgba(255, 230, 245, 0.27) 0%,rgba(230, 220, 240, 0.24) 50%,rgba(255,255,255,0.1) 51%,rgba(255,255,255,0) 100%);
+    background: -webkit-linear-gradient(top, rgba(255, 230, 245, 0.27) 0%,rgba(230, 220, 240, 0.24) 50%,rgba(255,255,255,0.1) 51%,rgba(255,255,255,0) 100%);
+    box-shadow: 0px 1px 5px rgba(0,0,0,.18);
+    color: #572963;
+}
+.theme1 .ui-state-hover,
+.theme1 .ui-widget-content .ui-state-hover,
+.theme1 .ui-widget-header .ui-state-hover,
+.theme1 .ui-state-focus,
+.theme1 .ui-widget-content .ui-state-focus,
+.theme1 .ui-widget-header .ui-state-focus {
+    border: 1px solid rgba(20, 20, 20, .2);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.35) 0%,rgba(251, 247, 255, 0.30) 50%,rgba(255,255,255,0.13) 51%,rgba(255,255,255,.05) 100%);
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.35) 0%,rgba(251, 247, 255, 0.30) 50%,rgba(255,255,255,0.13) 51%,rgba(255,255,255,.05) 100%);
+    box-shadow: 0px 1px 5px rgba(0,0,0,.18)
+}
+.theme1 .ui-widget-overlay {
+    background: #180D29 none;
+}
+
+/** Icons **/
+.theme1 [class^="icon-"],
+.theme1 [class*=" icon-"] {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    margin-top: 1px;
+    line-height: 28px;
+    vertical-align: text-top;
+    background-image: url("../images/sprite-icons.png");
+    background-position: -20px -15px;
+    background-repeat: no-repeat;
+}
+.theme1 .icon-volume {
+    background-position: -20px -15px;
+}
+.theme1 .icon-option {
+    width: 50px;
+    height: 50px;
+    background-position: -84px -20px;
+}
+
+/****************************************
+*********** Theme 2 Sample **************
+*****************************************/
+
+/** Slider Styles **/
+.theme2 input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: #df5735;
+    width: 20px;
+    height: 20px;
+    background: url('../images/slider-button.png') 0px 0px no-repeat;
+    border-radius: 20px;
+    box-shadow: 0 2px 6px #000;
+}
+
+/** Labels **/
+.theme2 label {
+    display: block;
+    color: #fff;
+    text-transform: uppercase;
+    line-spacing: -3px;
+}
+
+
+.theme2 .logo {
+    position: absolute;
+    margin: 8px 0px 0px 240px;
+    width: 167px;
+    height: 96px;
+    background: url('../images/logo.png') top center no-repeat;
+}
+.theme2 .live-play-screen {
+    width: 650px;
+    margin: 0px auto;
+}
+
+.theme2 .keys-container {
+    position: relative;
+    text-align: center;
+}
+
+.theme2 .background-gradient {
+    height: inherit;
+    min-height: 400px;  /** Temporary for now **/
+    background: url('../images/background.png') top center no-repeat;
+}
+
+/** Keys Styling ***/
+.theme2 .key {
+    margin: 0px -1px;
+    width: 77px;
+    height: 160px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, .2);
+    background: linear-gradient(to right, rgba(255,255,255,0.05) 0%,rgba(255,255,255,0.05) 50%,rgba(255,255,255,0.25) 50%,rgba(255,255,255,0.25) 100%);
+    box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.5);
+}
+.theme2 .key:active {
+    background: linear-gradient(to right, rgba(220,112,95,0.95) 0%,rgba(209,102,84,0.90) 50%,rgba(217,131,106,0.95) 50%,rgba(219,133,106,0.90) 100%);
+    box-shadow: 0px 0px 30px 1px rgba(255, 255, 255, .4);
+}
+.theme2 .row-a {
+    position:absolute;
+    height: 80px;
+    top: 0px;
+    left: 50px;
+}
+.theme2 .row-a .key-group {
+    float: left;
+    margin-left: 83px;
+}
+.theme2 .row-a .key-group:first-child {
+    margin-left: 0px;
+}
+.theme2 .row-a .key {
+    height: 90px;
+}
+
+/** Volume and Pitch Slider Styles **/
+.theme2 .volume-container {
+    float: right;
+    margin: 36px 15px 26px;
+}
+
+.theme2 .pitch-container {
+    float: left;
+    margin: 22px 15px 26px;
+}
+
+.theme2 .volume-container label,
+.theme2 .pitch-container label {
+    font-size: .85em;
+    margin-left: 2px;
+}
+
+/** Toolbar Styles **/
+.theme2 .toolbar {
+    clear: both;
+    padding: 7px;
+    background: rgba(255, 255, 255, .32);
+}
+.theme2 .toolbar #instrument {
+    width: 374px;
+    height: 66px;
+    background: linear-gradient(to bottom, rgba(255, 230, 245, 0.27) 0%,rgba(230, 220, 240, 0.3) 50%,rgba(255,255,255,0.1) 51%,rgba(255,255,255,0.02) 100%);
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, .15);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+    color: #fff;
+    text-transform: uppercase;
+    font-size: .95em;
+}
