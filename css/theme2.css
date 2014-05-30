@@ -141,21 +141,25 @@ select {
     height: 160px;
     /*border-radius: 0px 0px 4px 4px;*/
     border: 1px solid rgba(255, 255, 255, .2);
-    background: linear-gradient(to right, rgba(255, 192, 232, 0.1) 0%,rgba(255, 218, 237, 0.1) 50%,rgba(255, 213, 249, 0.28) 50%,rgba(249, 216, 255, 0.28) 100%);
-    background: -webkit-linear-gradient(left, rgba(255, 192, 232, 0.1) 0%,rgba(255, 218, 237, 0.1) 50%,rgba(255, 213, 249, 0.28) 50%,rgba(249, 216, 255, 0.28) 100%);
+    background: white;
+    /*background: linear-gradient(to right, rgba(255, 192, 232, 0.1) 0%,rgba(255, 218, 237, 0.1) 50%,rgba(255, 213, 249, 0.28) 50%,rgba(249, 216, 255, 0.28) 100%);*/
+    /*background: -webkit-linear-gradient(left, rgba(255, 192, 232, 0.1) 0%,rgba(255, 218, 237, 0.1) 50%,rgba(255, 213, 249, 0.28) 50%,rgba(249, 216, 255, 0.28) 100%);*/
 }
 .theme2 .key:hover {
-    background: linear-gradient(to right, rgba(255, 192, 232, 0.13) 0%,rgba(255, 218, 237, 0.15) 50%,rgba(255, 213, 249, 0.36) 50%,rgba(249, 216, 255, 0.34) 100%);
-    background: -webkit-linear-gradient(left, rgba(255, 192, 232, 0.13) 0%,rgba(255, 218, 237, 0.15) 50%,rgba(255, 213, 249, 0.36) 50%,rgba(249, 216, 255, 0.34) 100%);
+    background: #cacaca;
+    /*background: linear-gradient(to right, rgba(255, 192, 232, 0.13) 0%,rgba(255, 218, 237, 0.15) 50%,rgba(255, 213, 249, 0.36) 50%,rgba(249, 216, 255, 0.34) 100%);*/
+    /*background: -webkit-linear-gradient(left, rgba(255, 192, 232, 0.13) 0%,rgba(255, 218, 237, 0.15) 50%,rgba(255, 213, 249, 0.36) 50%,rgba(249, 216, 255, 0.34) 100%);*/
 }
 .theme2 .row-a .key {
     height: 90px;
-    background: linear-gradient(to right, rgba(197, 159, 191, 0.9) 0%,rgba(195, 158, 186, 0.9) 50%,rgba(209, 176, 202, 0.9) 50%,rgba(207, 185, 200, 0.9) 100%);
-    background: -webkit-linear-gradient(left, rgba(197, 159, 191, 0.9) 0%,rgba(195, 158, 186, 0.9) 50%,rgba(209, 176, 202, 0.9) 50%,rgba(207, 185, 200, 0.9) 100%);
+    background: #000;
+    /*background: linear-gradient(to right, rgba(197, 159, 191, 0.9) 0%,rgba(195, 158, 186, 0.9) 50%,rgba(209, 176, 202, 0.9) 50%,rgba(207, 185, 200, 0.9) 100%);*/
+    /*background: -webkit-linear-gradient(left, rgba(197, 159, 191, 0.9) 0%,rgba(195, 158, 186, 0.9) 50%,rgba(209, 176, 202, 0.9) 50%,rgba(207, 185, 200, 0.9) 100%);*/
 }
 .theme2 .row-a .key:hover {
-    background: linear-gradient(to right, rgba(203, 163, 198, 0.94) 0%,rgba(199, 162, 190, 0.96) 50%,rgba(209, 176, 202, 0.96) 50%,rgba(207, 185, 200, 0.93) 100%);
-    background: -webkit-linear-gradient(left, rgba(203, 163, 198, 0.94) 0%,rgba(199, 162, 190, 0.96) 50%,rgba(209, 176, 202, 0.96) 50%,rgba(207, 185, 200, 0.93) 100%);
+    background: #322338;
+    /*background: linear-gradient(to right, rgba(203, 163, 198, 0.94) 0%,rgba(199, 162, 190, 0.96) 50%,rgba(209, 176, 202, 0.96) 50%,rgba(207, 185, 200, 0.93) 100%);*/
+    /*background: -webkit-linear-gradient(left, rgba(203, 163, 198, 0.94) 0%,rgba(199, 162, 190, 0.96) 50%,rgba(209, 176, 202, 0.96) 50%,rgba(207, 185, 200, 0.93) 100%);*/
 }
 
 .theme2 .row-a {
