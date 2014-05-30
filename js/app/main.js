@@ -161,7 +161,8 @@
 
         // Pitch Slider
         $pitchSlider.on('change', function () {
-            self.pitch = (parseInt($(this).val(), 10) - 3) * 12;
+            self.pitch = (parseInt($(this).val(), 10) - 3) * 12; // Changes Octaves
+//            self.pitch = (parseInt($(this).val(), 10) - 3) * 1; // Changes pitch by 1 step
         });
 
         // Instrument Selector
@@ -225,6 +226,7 @@
                 text: 'OK',
                 click: function () {
                     // @TODO - Move this to some function to be called on page load and here
+                    // @TODO - If preloader works, we can use MIDI.setInstrument() to switch instruments... oh wells
                     MIDI.loadPlugin({
                         USE_XHR: false,
                         soundfontUrl: './js/assets/soundfont/',
@@ -356,7 +358,7 @@
     MIDI.loadPlugin({
         USE_XHR: false,
         soundfontUrl: './js/assets/soundfont/',
-        // Commented out Instruments for now... Causes bad Lag in FireFox
+        // Commented out Instruments for now... Causes bad Lag in FireFox when it tries to preload
         // instruments: ['acoustic_grand_piano', 'accordion', 'acoustic_guitar_nylon', 'acoustic_guitar_steel', 'alto_sax', 'overdriven_guitar', 'music_box', 'synth_strings_1', 'violin'],
         callback: function () {
             // Create a new instance of LeafNote() and call init()
