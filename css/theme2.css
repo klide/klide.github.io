@@ -31,7 +31,6 @@ button:hover {
 select {
     width: 100%;
 }
-
 #leafNoteApp {
 
     display: none;
@@ -110,7 +109,6 @@ select {
     text-transform: uppercase;
     line-spacing: -3px;
 }
-
 .theme2 .logo {
     position: absolute;
     margin: 8px 0px 0px 240px;
@@ -122,17 +120,19 @@ select {
     width: 650px;
     margin: 0px auto;
 }
-
 .theme2 .keys-container {
     position: relative;
     text-align: center;
 }
-
 .theme2 .background-gradient {
     height: inherit;
     min-height: 400px;  /** Temporary for now **/
     background: url('../images/background.jpg') top center no-repeat;
 }
+
+
+
+
 
 /** Keys Styling ***/
 .theme2 .key {
@@ -142,6 +142,8 @@ select {
     border-radius: 80px;
     border: 1px solid rgba(255, 255, 255, .2);
     background: white;
+    color: #df5735;
+    
     /*background: linear-gradient(to right, rgba(255, 192, 232, 0.1) 0%,rgba(255, 218, 237, 0.1) 50%,rgba(255, 213, 249, 0.28) 50%,rgba(249, 216, 255, 0.28) 100%);*/
     /*background: -webkit-linear-gradient(left, rgba(255, 192, 232, 0.1) 0%,rgba(255, 218, 237, 0.1) 50%,rgba(255, 213, 249, 0.28) 50%,rgba(249, 216, 255, 0.28) 100%);*/
 }
@@ -162,20 +164,11 @@ select {
     /*background: linear-gradient(to right, rgba(203, 163, 198, 0.94) 0%,rgba(199, 162, 190, 0.96) 50%,rgba(209, 176, 202, 0.96) 50%,rgba(207, 185, 200, 0.93) 100%);*/
     /*background: -webkit-linear-gradient(left, rgba(203, 163, 198, 0.94) 0%,rgba(199, 162, 190, 0.96) 50%,rgba(209, 176, 202, 0.96) 50%,rgba(207, 185, 200, 0.93) 100%);*/
 }
-
-
-.theme2 .row-b{
-    position: absolute;
-    top: 200px;
-
-    
-}
-
 .theme2 .row-a {
     position:absolute;
-    height: 800px;
-    top: 320px;
-    left: 50px;
+    top: 168px;
+    left: 40px;
+    z-index: 100;
     
 }
 .theme2 .row-a .key-group {
@@ -185,6 +178,16 @@ select {
 .theme2 .row-a .key-group:first-child {
     margin-left: 0px;
 }
+
+
+
+.theme2 .row-b{
+    position: absolute;
+    top: 240px;
+
+    
+}
+
 
 .theme2 .key:active,
 .theme2 .key.active{
@@ -197,6 +200,10 @@ select {
     
 }
 
+
+
+
+
 /** Volume and Pitch Slider Styles **/
 .theme2 .volume-container {
     float: right;
@@ -205,12 +212,10 @@ select {
 .theme2 .volume-container .volume-input {
     margin-top: 14px;
 }
-
 .theme2 .pitch-container {
     float: left;
     margin: 22px 15px 26px;
 }
-
 .theme2 .volume-container label,
 .theme2 .pitch-container label {
     font-size: .85em;
