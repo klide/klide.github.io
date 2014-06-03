@@ -138,8 +138,8 @@ select {
 .theme2 .key {
     margin: 0px -1px;
     width: 77px;
-    height: 160px;
-    /*border-radius: 0px 0px 4px 4px;*/
+    height: 77px;
+    border-radius: 80px;
     border: 1px solid rgba(255, 255, 255, .2);
     background: white;
     /*background: linear-gradient(to right, rgba(255, 192, 232, 0.1) 0%,rgba(255, 218, 237, 0.1) 50%,rgba(255, 213, 249, 0.28) 50%,rgba(249, 216, 255, 0.28) 100%);*/
@@ -151,22 +151,32 @@ select {
     /*background: -webkit-linear-gradient(left, rgba(255, 192, 232, 0.13) 0%,rgba(255, 218, 237, 0.15) 50%,rgba(255, 213, 249, 0.36) 50%,rgba(249, 216, 255, 0.34) 100%);*/
 }
 .theme2 .row-a .key {
-    height: 90px;
+    height: 78px;
+    
     background: #000;
     /*background: linear-gradient(to right, rgba(197, 159, 191, 0.9) 0%,rgba(195, 158, 186, 0.9) 50%,rgba(209, 176, 202, 0.9) 50%,rgba(207, 185, 200, 0.9) 100%);*/
     /*background: -webkit-linear-gradient(left, rgba(197, 159, 191, 0.9) 0%,rgba(195, 158, 186, 0.9) 50%,rgba(209, 176, 202, 0.9) 50%,rgba(207, 185, 200, 0.9) 100%);*/
 }
 .theme2 .row-a .key:hover {
-    background: #322338;
+    background: #cacaca;
     /*background: linear-gradient(to right, rgba(203, 163, 198, 0.94) 0%,rgba(199, 162, 190, 0.96) 50%,rgba(209, 176, 202, 0.96) 50%,rgba(207, 185, 200, 0.93) 100%);*/
     /*background: -webkit-linear-gradient(left, rgba(203, 163, 198, 0.94) 0%,rgba(199, 162, 190, 0.96) 50%,rgba(209, 176, 202, 0.96) 50%,rgba(207, 185, 200, 0.93) 100%);*/
 }
 
+
+.theme2 .row-b{
+    position: absolute;
+    top: 200px;
+
+    
+}
+
 .theme2 .row-a {
     position:absolute;
-    height: 80px;
-    top: 0px;
+    height: 800px;
+    top: 320px;
     left: 50px;
+    
 }
 .theme2 .row-a .key-group {
     float: left;
@@ -177,10 +187,14 @@ select {
 }
 
 .theme2 .key:active,
-.theme2 .key.active {
-    background: linear-gradient(to right, rgba(231, 91, 70, 0.95) 0%,rgba(255, 113, 77, 0.9) 50%,rgba(245, 136, 98, 0.95) 50%,rgba(216,130,106,0.90) 100%)!important;
-    background: -webkit-linear-gradient(left, rgba(231, 91, 70, 0.95) 0%,rgba(255, 113, 77, 0.9) 50%,rgba(245, 136, 98, 0.95) 50%,rgba(216,130,106,0.90) 100%)!important;
+.theme2 .key.active{
+/*    background: linear-gradient(to right, rgba(231, 91, 70, 0.95) 0%,rgba(255, 113, 77, 0.9) 50%,rgba(245, 136, 98, 0.95) 50%,rgba(216,130,106,0.90) 100%)!important;
+    background: -webkit-linear-gradient(left, rgba(231, 91, 70, 0.95) 0%,rgba(255, 113, 77, 0.9) 50%,rgba(245, 136, 98, 0.95) 50%,rgba(216,130,106,0.90) 100%)!important;*/
+    clear: both;
     box-shadow: 0px 0px 30px 1px rgba(255, 255, 255, .4);
+/*    background: rgba(255,255,255,.8);*/
+    
+    
 }
 
 /** Volume and Pitch Slider Styles **/
