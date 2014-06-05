@@ -34,6 +34,11 @@ select {
 #leafNoteApp {
 
     display: none;
+    border: 1px solid #1c94c4;
+    height: 640px;
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
 }
 #loader {
     position: relative;
@@ -110,26 +115,28 @@ select {
     line-spacing: -3px;
 }
 .theme2 .logo {
-    position: absolute;
+    /*position: absolute;*/
     margin: 8px 0px 0px 240px;
     width: 167px;
     height: 96px;
     background: url('../images/logo.png') top center no-repeat;
+    border: 1px solid blueviolet;
 }
 .theme2 .live-play-screen {
-    width: 650px;
+    width: 640px;
     margin: 0px auto;
-}
-.theme2 .keys-container {
-    position: relative;
-    text-align: center;
 }
 .theme2 .background-gradient {
     height: inherit;
     min-height: 400px;  /** Temporary for now **/
     background: url('../images/background.jpg') top center no-repeat;
 }
-
+.theme2 .keys-container {
+    position: absolute;
+    
+    text-align: center;
+    border: 1px solid yellow;
+}
 
 
 
@@ -152,9 +159,29 @@ select {
     /*background: linear-gradient(to right, rgba(255, 192, 232, 0.13) 0%,rgba(255, 218, 237, 0.15) 50%,rgba(255, 213, 249, 0.36) 50%,rgba(249, 216, 255, 0.34) 100%);*/
     /*background: -webkit-linear-gradient(left, rgba(255, 192, 232, 0.13) 0%,rgba(255, 218, 237, 0.15) 50%,rgba(255, 213, 249, 0.36) 50%,rgba(249, 216, 255, 0.34) 100%);*/
 }
-.theme2 .row-a .key {
-    height: 78px;
+.theme2 .key:active,
+.theme2 .key.active{
+/*    background: linear-gradient(to right, rgba(231, 91, 70, 0.95) 0%,rgba(255, 113, 77, 0.9) 50%,rgba(245, 136, 98, 0.95) 50%,rgba(216,130,106,0.90) 100%)!important;
+    background: -webkit-linear-gradient(left, rgba(231, 91, 70, 0.95) 0%,rgba(255, 113, 77, 0.9) 50%,rgba(245, 136, 98, 0.95) 50%,rgba(216,130,106,0.90) 100%)!important;*/
+    clear: both;
+    box-shadow: 0px 0px 30px 1px rgba(255, 255, 255, .4);
+/*    background: rgba(255,255,255,.8);*/
     
+    
+}
+
+.theme2 .row-a {
+    position:relative;
+    top: 164px;
+    left: 40px;
+    z-index: 10;
+    border: 1px solid red;
+    height: 77px;
+    width: 474px;
+    
+}
+.theme2 .row-a .key {
+/*    height: 78px;*/
     background: #000;
     /*background: linear-gradient(to right, rgba(197, 159, 191, 0.9) 0%,rgba(195, 158, 186, 0.9) 50%,rgba(209, 176, 202, 0.9) 50%,rgba(207, 185, 200, 0.9) 100%);*/
     /*background: -webkit-linear-gradient(left, rgba(197, 159, 191, 0.9) 0%,rgba(195, 158, 186, 0.9) 50%,rgba(209, 176, 202, 0.9) 50%,rgba(207, 185, 200, 0.9) 100%);*/
@@ -163,13 +190,6 @@ select {
     background: #cacaca;
     /*background: linear-gradient(to right, rgba(203, 163, 198, 0.94) 0%,rgba(199, 162, 190, 0.96) 50%,rgba(209, 176, 202, 0.96) 50%,rgba(207, 185, 200, 0.93) 100%);*/
     /*background: -webkit-linear-gradient(left, rgba(203, 163, 198, 0.94) 0%,rgba(199, 162, 190, 0.96) 50%,rgba(209, 176, 202, 0.96) 50%,rgba(207, 185, 200, 0.93) 100%);*/
-}
-.theme2 .row-a {
-    position:absolute;
-    top: 168px;
-    left: 40px;
-    z-index: 100;
-    
 }
 .theme2 .row-a .key-group {
     float: left;
@@ -182,32 +202,24 @@ select {
 
 
 .theme2 .row-b{
-    position: absolute;
-    top: 240px;
-
+    position: relative;
+    top: 160px;
+    float: left;
+    height: 77px;
+    width: 632px;
+    border: 1px solid red;
+        
     
 }
-
-
-.theme2 .key:active,
-.theme2 .key.active{
-/*    background: linear-gradient(to right, rgba(231, 91, 70, 0.95) 0%,rgba(255, 113, 77, 0.9) 50%,rgba(245, 136, 98, 0.95) 50%,rgba(216,130,106,0.90) 100%)!important;
-    background: -webkit-linear-gradient(left, rgba(231, 91, 70, 0.95) 0%,rgba(255, 113, 77, 0.9) 50%,rgba(245, 136, 98, 0.95) 50%,rgba(216,130,106,0.90) 100%)!important;*/
-    clear: both;
-    box-shadow: 0px 0px 30px 1px rgba(255, 255, 255, .4);
-/*    background: rgba(255,255,255,.8);*/
-    
-    
-}
-
-
-
 
 
 /** Volume and Pitch Slider Styles **/
 .theme2 .volume-container {
     float: right;
     margin: 27px 15px 19px;
+/*    position: relative;
+    top: 60px;*/
+
 }
 .theme2 .volume-container .volume-input {
     margin-top: 14px;
@@ -215,6 +227,8 @@ select {
 .theme2 .pitch-container {
     float: left;
     margin: 22px 15px 26px;
+    /*position: absolute;*/
+    top: 56px;
 }
 .theme2 .volume-container label,
 .theme2 .pitch-container label {
@@ -229,6 +243,8 @@ select {
     background: none;
 }
 .theme2 .toolbar .instrument-button {
+/*    position: absolute;
+    top: 0px;*/
     width: 374px;
     height: 66px;
 }
