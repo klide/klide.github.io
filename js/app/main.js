@@ -5,11 +5,20 @@
      * Basic methods to initialize and play a note on a click of a button
      */
     var LeafNote = function () {
+        this.song;
+        this.track;
+
         // Some Basic Default Settings
         this.volume = 200;
         this.pitch = 0;
-        this.currentInstrument = 'acoustic_grand_piano';
+        this.currentInstrument = {
+            name: 'acoustic_grand_piano',
+            id: 0
+        };
         this.noteDuration = 700;
+        this.recordTimer;
+        this.startTime = 100;
+        this.recording = false;
 
         // @TODO - Move this somewhere configurable
         this.availableInstruments = [{
@@ -126,7 +135,8 @@
             $volumeSlider = $('#volumeSlider'),
             $pitchSlider = $('#pitchSlider'),
             $instrumentSelector = $('#instrumentSelector'),
-            $options = $('#options');
+            $options = $('#options'),
+            $record = $('#record');
 
         // Display the leafNote App Container
         $('#leafNoteApp').fadeIn('fast');
@@ -174,6 +184,17 @@
         $options.on('click', function () {
             alert('Coming soon!');
         });
+
+        // Recording Button
+        $record.on('click', function () {
+            if ($(this).hasClass('active')) {
+                $(this).removeClass('active');
+                self.stopRecording();
+            } else {
+                $(this).addClass('active');
+                self.startRecording();
+            }
+        });
     };
 
     /**
@@ -182,9 +203,15 @@
      * @param {int} note The note to play
      */
     LeafNote.prototype.playNote = function (note, $keyPad) {
-        console.log('Playing Note:', note, 'Volume:', this.volume, 'Instrument:', this.currentInstrument);
+//        console.log('Note:', note, MIDI.noteToKey[note]);
+        console.log('Playing Note:', note, 'Volume:', this.volume, 'Instrument:', this.currentInstrument.name, 'Current Time:', this.startTime);
         MIDI.noteOn(0, note, this.volume, 0);
         $keyPad.addClass('active');
+
+        // Record the Note, if recording is on
+        if (this.recording) {
+            this.recordNote(note);
+        }
     };
 
     /**
@@ -194,6 +221,101 @@
     LeafNote.prototype.stopNote = function (note, $keyPad) {
         MIDI.noteOff(0, note, 0);
         $keyPad.removeClass('active');
+    };
+
+    /**
+     * Record the Note
+     * @param {string} note The Note to Add to the MIDI track
+     */
+    LeafNote.prototype.recordNote = function (note) {
+        // clock: 100, MIDI channel: 0, note: E5, velocity: 127, duration: 50 clocks
+        this.track.addNote(this.startTime, 0, note, this.volume, 50); // Will need to determine duration
+    };
+
+    /**
+     * Start the Timer for recording
+     */
+    LeafNote.prototype.startRecording = function () {
+        var self = this;
+
+        this.recording = true;
+
+        // Keep track of the current time / clock
+        this.recordTimer = setInterval(function () {
+            self.startTime = self.startTime + 1;
+        }, 1);
+
+        // Create a MIDI file
+        this.song = new JZZ.MidiFile(1,100);
+
+        // Add MIDI track
+        this.track = new JZZ.MidiFile.MTrk;
+
+        // Some Track Metadata (Name, Tempo, etc)
+        this.track.addName(0, 'Sample Song');
+        this.track.addTempo(0, 127);
+        // clock: 0, instrument (hex): 0xc0 0x0b - The hex value 0b is the vibraphone number 11
+        this.track.addMidi(0,0xc0,this.getHex(self.currentInstrument.id));
+        this.song.push(this.track);
+    };
+
+    /**
+     * Gets the HEX value of the Number / id
+     * @return hex value
+     */
+    LeafNote.prototype.getHex = function (id) {
+        var hex = (parseInt(id, 10)).toString(16);
+        if (hex.length < 2) {
+            hex = '0' + hex;
+        }
+        return "0x" + hex;
+    }
+
+    /**
+     * Stop the recording and output the MIDI file
+     */
+    LeafNote.prototype.stopRecording = function () {
+        // Add a few milliseconds to the end of the MIDI track
+        this.track.setTime(this.startTime + 150);
+
+        // Reset some values
+        this.recording = false;
+        this.startTime = 100;
+        clearInterval(this.recordTimer);
+
+        // Convert to Base-64 string then create a data URI so it can be downloaded
+        var newSong = this.song.dump(),
+            b64 = JZZ.MidiFile.toBase64(newSong),
+            uri = 'data:audio/midi;base64,' + b64,
+            dialogContent = _.template(
+                '<h4>' +
+                    '<embed class="midi-embed" src=' + uri + ' autostart=false>' +
+                    '<a class="midi-download" target="_blank" href=' + uri + '>Download File</a>' +
+                '</h4>'
+            ),
+            dialog = $('<div/>', {
+                html: dialogContent({uri: uri})
+            });
+
+        // Display the dialog box for Downloading the MIDI file
+        $(dialog).dialog({
+            title: 'MIDI file',
+            modal: true,
+            buttons: [{
+                text: 'OK',
+                click: function () {
+                    $(this).dialog('destroy');
+                }
+            }],
+            open: function () {
+                // Clear the song
+                this.song = '';
+            },
+            close: function () {
+                $(this).dialog('destroy');
+                $(dialog).remove();
+            }
+        });
     };
 
     /**
@@ -209,8 +331,7 @@
                 '</select>'),
             dialog = $('<div/>', {
                 html: dialogContent({availableInstruments: self.availableInstruments})
-            }),
-            instrumentNumber = 0;
+            });
 
         // Display the Dialog to select an instrument from
         $(dialog).dialog({
@@ -218,8 +339,8 @@
             modal: true,
             open: function () {
                 $('#instrumentOption').on('change', function () {
-                    self.currentInstrument = $(this).val();
-                    instrumentNumber = $('#instrumentOption option:selected').attr('data-number');
+                    self.currentInstrument.name = $(this).val();
+                    self.currentInstrument.id = $('#instrumentOption option:selected').attr('data-number');
                 });
             },
             buttons: [{
@@ -230,10 +351,10 @@
                     MIDI.loadPlugin({
                         USE_XHR: false,
                         soundfontUrl: './js/assets/soundfont/',
-                        instrument: self.currentInstrument,
+                        instrument: self.currentInstrument.name,
                         callback: function () {
                             // Change the Instrument
-                            MIDI.setInstrument(0, instrumentNumber);
+                            MIDI.setInstrument(0, self.currentInstrument.id);
                         }
                     });
 
