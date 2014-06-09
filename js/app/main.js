@@ -200,7 +200,8 @@
     /**
      * Plays a Note (whatever the note assigned to the button)
      * Will light up the note being played
-     * @param {int} note The note to play
+     * @param {int}    note    The note to play
+     * @param {object} $keyPad The HTML element that is clicked
      */
     LeafNote.prototype.playNote = function (note, $keyPad) {
 //        console.log('Note:', note, MIDI.noteToKey[note]);
