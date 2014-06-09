@@ -255,7 +255,6 @@ JZZ.MidiFile.MTrk.prototype.addEvent=function(t,s,d){
  t=parseInt(t); if(isNaN(t)||t<0) throw new Error('Invalid parameter');
  s=s.toString();
  d=d.toString();
-// console.log(t, s, d);
  var i;
  if(this.getTime()<t) this.setTime(t);
  var x=this.eventOrder(s,d);
@@ -283,8 +282,8 @@ JZZ.MidiFile.MTrk.prototype.addNote=function(t,ch,note,vel,dur){
  ch=parseInt(ch); if(isNaN(ch)||ch<0||ch>15) throw new Error('Invalid parameter');
  if(dur==undefined) dur=0;
  dur=parseInt(dur); if(isNaN(dur)||dur<0) throw new Error('Invalid parameter');
- if(vel==undefined) vel=250;
- vel=parseInt(vel); if(isNaN(vel)||vel<0||vel>255) throw new Error('Invalid parameter');
+ if(vel==undefined) vel=127;
+ vel=parseInt(vel); if(isNaN(vel)||vel<0||vel>127) throw new Error('Invalid parameter');
  this.addMidi(t,0x90+ch,n,vel);
  if(dur) this.addMidi(t+dur,0x90+ch,n,0);
 }
@@ -342,7 +341,6 @@ JZZ.MidiFile.Event.prototype.toString=function(){
    var mi=this.data.charCodeAt(1);
    if(sf&0x80) sf=sf-0x100;
    sf+=7;
-   console.log(sf);
    if(sf>=0 && sf<=14 && mi>=0 && mi<=1){
     if(mi) sf+=3;
     str+=['Cb','Gb','Db','Ab','Eb','Bb','F','C','G','D','A','E','B','F#','C#','G#','D#','A#'][sf];

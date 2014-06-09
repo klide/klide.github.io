@@ -17,7 +17,7 @@
         };
         this.noteDuration = 700;
         this.recordTimer;
-        this.startTime = 100;
+        this.startTime = 3;
         this.recording = false;
 
         // @TODO - Move this somewhere configurable
@@ -204,7 +204,7 @@
      */
     LeafNote.prototype.playNote = function (note, $keyPad) {
 //        console.log('Note:', note, MIDI.noteToKey[note]);
-        console.log('Playing Note:', note, 'Volume:', this.volume, 'Instrument:', this.currentInstrument.name, 'Current Time:', this.startTime);
+//        console.log('Playing Note:', note, 'Volume:', this.volume, 'Instrument:', this.currentInstrument.name, 'Current Time:', this.startTime);
         MIDI.noteOn(0, note, this.volume, 0);
         $keyPad.addClass('active');
 
@@ -216,7 +216,8 @@
 
     /**
      * Stops playing a Note (whatever the note assigned to the button)
-     * @param {int} note The note to stop playing
+     * @param {int}    note    The note to stop playing
+     * @param {object} $keyPad The HTML Element / key
      */
     LeafNote.prototype.stopNote = function (note, $keyPad) {
         MIDI.noteOff(0, note, 0);
@@ -229,11 +230,11 @@
      */
     LeafNote.prototype.recordNote = function (note) {
         // clock: 100, MIDI channel: 0, note: E5, velocity: 127, duration: 50 clocks
-        this.track.addNote(this.startTime, 0, note, this.volume, 50); // Will need to determine duration
+        this.track.addNote(this.startTime, 0, note, 127, 50); // Will need to determine duration
     };
 
     /**
-     * Start the Timer for recording
+     * Start the recording
      */
     LeafNote.prototype.startRecording = function () {
         var self = this;
@@ -246,16 +247,16 @@
         }, 1);
 
         // Create a MIDI file
-        this.song = new JZZ.MidiFile(1,100);
+        this.song = new JZZ.MidiFile(1, 100);
 
         // Add MIDI track
         this.track = new JZZ.MidiFile.MTrk;
 
         // Some Track Metadata (Name, Tempo, etc)
         this.track.addName(0, 'Sample Song');
-        this.track.addTempo(0, 127);
+
         // clock: 0, instrument (hex): 0xc0 0x0b - The hex value 0b is the vibraphone number 11
-        this.track.addMidi(0,0xc0,this.getHex(self.currentInstrument.id));
+        this.track.addMidi(0, 0xc0, this.getHex(self.currentInstrument.id));
         this.song.push(this.track);
     };
 
@@ -269,14 +270,14 @@
             hex = '0' + hex;
         }
         return "0x" + hex;
-    }
+    };
 
     /**
      * Stop the recording and output the MIDI file
      */
     LeafNote.prototype.stopRecording = function () {
         // Add a few milliseconds to the end of the MIDI track
-        this.track.setTime(this.startTime + 150);
+        this.track.setTime(this.startTime + 100);
 
         // Reset some values
         this.recording = false;
@@ -357,6 +358,11 @@
                             MIDI.setInstrument(0, self.currentInstrument.id);
                         }
                     });
+
+                    // If recording, switch the recorded instrument
+                    if (self.recording) {
+                        self.track.addMidi(self.startTime, 0xc0, self.getHex(self.currentInstrument.id));
+                    }
 
                     $(this).dialog('destroy');
                 }
