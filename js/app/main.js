@@ -1,4 +1,4 @@
-(function () {
+var LeafNote = (function () {
 
     /**
      * leafNote App
@@ -20,108 +20,8 @@
         this.startTime = 3;
         this.recording = false;
 
-        // @TODO - Move this somewhere configurable
-        this.availableInstruments = [{
-            file: 'acoustic_grand_piano',
-            name: 'Acoustic Grand Piano',
-            number: 0
-        }, {
-            file: 'accordion',
-            name: 'Accordion',
-            number: 21
-        }, {
-            file: 'acoustic_bass',
-            name: 'Acoustic Bass',
-            number: 32
-        }, {
-            file: 'acoustic_guitar_nylon',
-            name: 'Acoustic Guitar Nylon',
-            number: 24
-        }, {
-            file: 'acoustic_guitar_steel',
-            name: 'Acoustic Guitar Steel',
-            number: 25
-        }, {
-            file: 'alto_sax',
-            name: 'Alto Sax',
-            number: 65
-        }, {
-            file: 'breath_noise',
-            name: 'Breath Noise',
-            number: 121
-        }, {
-            file: 'choir_aahs',
-            name: 'Choir Aahs',
-            number: 52
-        }, {
-            file: 'clarinet',
-            name: 'Clarinet',
-            number: 71
-        }, {
-            file: 'electric_guitar_clean',
-            name: 'Electric Guitar Clean',
-            number: 27
-        }, {
-            file: 'electric_guitar_muted',
-            name: 'Electric Guitar Muted',
-            number: 28
-        }, {
-            file: 'flute',
-            name: 'Flute',
-            number: 73
-        }, {
-            file: 'music_box',
-            name: 'Music Box',
-            number: 10
-        }, {
-            file: 'ocarina',
-            name: 'Ocarina',
-            number: 79
-        }, {
-            file: 'overdriven_guitar',
-            name: 'Overdriven Guitar',
-            number: 29
-        }, {
-            file: 'pad_4_choir',
-            name: 'Pad 4 (Choir)',
-            number: 91
-        }, {
-            file: 'pan_flute',
-            name: 'Pan Flute',
-            number: 75
-        }, {
-            file: 'shanai',
-            name: 'Shanai',
-            number: 111
-        }, {
-            file: 'steel_drums',
-            name: 'Steel Drums',
-            number: 114
-        }, {
-            file: 'string_ensemble_1',
-            name: 'String Ensemble 1',
-            number: 48
-        }, {
-            file: 'synth_strings_1',
-            name: 'Synth Strings 1',
-            number: 50
-        }, {
-            file: 'taiko_drum',
-            name: 'Taiko Drum',
-            number: 116
-        }, {
-            file: 'tenor_sax',
-            name: 'Tenor Sax',
-            number: 66
-        }, {
-            file: 'violin',
-            name: 'Violin',
-            number: 40
-        }, {
-            file: 'xylophone',
-            name: 'Xylophone',
-            number: 13
-        }];
+        // Create the Local leafNote DB Instance, if none exists
+        this.db = PouchDB('leafNote') ? PouchDB('leafNote') : new PouchDB('leafNote');
     };
 
     /**
@@ -172,7 +72,7 @@
         // Pitch Slider
         $pitchSlider.on('change', function () {
             self.pitch = (parseInt($(this).val(), 10) - 3) * 12; // Changes Octaves
-//            self.pitch = (parseInt($(this).val(), 10) - 3) * 1; // Changes pitch by 1 step
+            //self.pitch = (parseInt($(this).val(), 10) - 3) * 1; // Changes pitch by 1 step
         });
 
         // Instrument Selector
@@ -210,7 +110,7 @@
         $keyPad.addClass('active');
 
         // Record the Note, if recording is on
-        if (this.recording) {
+        if (this.recording && !isNaN(note)) {
             this.recordNote(note);
         }
     };
@@ -248,7 +148,7 @@
         }, 1);
 
         // Create a MIDI file
-        this.song = new JZZ.MidiFile(1, 100);
+        this.song = new JZZ.MidiFile(1, 108);
 
         // Add MIDI track
         this.track = new JZZ.MidiFile.MTrk;
@@ -262,21 +162,12 @@
     };
 
     /**
-     * Gets the HEX value of the Number / id
-     * @return hex value
-     */
-    LeafNote.prototype.getHex = function (id) {
-        var hex = (parseInt(id, 10)).toString(16);
-        if (hex.length < 2) {
-            hex = '0' + hex;
-        }
-        return "0x" + hex;
-    };
-
-    /**
      * Stop the recording and output the MIDI file
      */
     LeafNote.prototype.stopRecording = function () {
+        // Remove keydown and keyup binding, temporarily
+        this.unbindKeyDown();
+
         // Add a few milliseconds to the end of the MIDI track
         this.track.setTime(this.startTime + 100);
 
@@ -288,36 +179,123 @@
         // Convert to Base-64 string then create a data URI so it can be downloaded
         var newSong = this.song.dump(),
             b64 = JZZ.MidiFile.toBase64(newSong),
-            uri = 'data:audio/midi;base64,' + b64,
+            uri = 'data:audio/midi;base64,' + b64;
+
+        // Prompt to Save the song locally
+        this.displaySaveDialog(uri);
+    };
+
+    /**
+     * Display the Save Dialog so that a name can be entered for the recorded MIDI file
+     * @param {string} uri The URI Data to be saved
+     */
+    LeafNote.prototype.displaySaveDialog = function (uri) {
+        var self = this,
             dialogContent = _.template(
-                '<h4>' +
-                    '<embed class="midi-embed" src=' + uri + ' autostart=false>' +
-                    '<a class="midi-download" target="_blank" href=' + uri + '>Download File</a>' +
-                '</h4>'
+                '<label for="midiname">' +
+                    'Give it a name:' +
+                '</label>' +
+                '<input type="text" id="midiname" name="midiName" />'
             ),
             dialog = $('<div/>', {
-                html: dialogContent({uri: uri})
+                html: dialogContent
             });
 
         // Display the dialog box for Downloading the MIDI file
         $(dialog).dialog({
-            title: 'MIDI file',
+            title: 'Save MIDI File',
             modal: true,
             buttons: [{
                 text: 'OK',
                 click: function () {
-                    $(this).dialog('destroy');
+                    self.saveFile(uri, $('#midiname').val()).then(function (res) {
+                        self.outputMidiFile(res.id);
+                        $(dialog).dialog('close');
+                    }, function (err) {
+                        alert(err.message);
+                    });
                 }
             }],
-            open: function () {
-                // Clear the song
-                this.song = '';
-            },
             close: function () {
-                $(this).dialog('destroy');
+                $(dialog).dialog('destroy');
                 $(dialog).remove();
+                // Re-enable keydown / keyup binding
+                self.handleKeyDown($('.play'));
             }
         });
+    };
+
+    /**
+     * Saves the MIDI file locally
+     * @param {string} file The URI data
+     * @param {string} name The Name of the MIDI file to store
+     */
+    LeafNote.prototype.saveFile = function (file, name) {
+        var def = $.Deferred();
+
+        this.db.put({_id: name, uri: file}, function (err, res) {
+            if (err) {
+                def.reject(err);
+            } else {
+                def.resolve(res);
+            }
+        });
+        return def.promise();
+    };
+
+    /**
+     * Outputs the recorded MIDI file into an embed object in a dialog box
+     * @param {string} fileName The Name of the MIDI File to Output
+     */
+    LeafNote.prototype.outputMidiFile = function (fileName) {
+        // Get the song and render / play it
+        this.db.get(fileName, function (err, res) {
+            var midiURL = res.uri,
+                dialogContent = _.template(
+                    '<h4>' +
+                        '<embed class="midi-embed" src=' + midiURL + ' autostart=false>' +
+                        '<a class="midi-download" target="_blank" href=' + midiURL + '>Download File</a>' +
+                    '</h4>'
+                ),
+                dialog = $('<div/>', {
+                    html: dialogContent({midiURL: midiURL})
+                });
+
+            $(dialog).dialog({
+                title: 'Playing MIDI file: ' + fileName,
+                modal: true,
+                buttons: [{
+                    text: 'OK',
+                    click: function () {
+                        $(this).dialog('destroy');
+                    }
+                }],
+                open: function () {
+                    // Clear the song
+                    this.song = '';
+                },
+                close: function () {
+                    $(this).dialog('destroy');
+                    $(dialog).remove();
+                }
+            });
+        });
+    };
+
+    /**
+     * Gets all the stored MIDI files
+     * @TODO - Will use later to display list of recorded MIDI files
+     */
+    LeafNote.prototype.getAllFiles = function () {
+        var def = $.Deferred();
+        this.db.allDocs({include_docs: true, attachments: true}, function (err, res) {
+            if (err) {
+                def.resolve(err);
+            } else {
+                def.resolve(res);
+            }
+        });
+        return def.promise();
     };
 
     /**
@@ -422,6 +400,14 @@
     };
 
     /**
+     * Unbinds ALL the keydown and keyup events
+     */
+    LeafNote.prototype.unbindKeyDown = function () {
+        $(document).off('keydown');
+        $(document).off('keyup');
+    };
+
+    /**
      * Gets the note from the specified keyPad for the triggered keycode
      * @param  {array} $keyPads An array of all the buttons
      * @param  {int}   keyCode The keycode passed in by the keydown event
@@ -480,9 +466,20 @@
     };
 
     /**
+     * Gets the HEX value of the Number / id
+     * @return hex value
+     */
+    LeafNote.prototype.getHex = function (id) {
+        var hex = (parseInt(id, 10)).toString(16);
+        if (hex.length < 2) {
+            hex = '0' + hex;
+        }
+        return "0x" + hex;
+    };
+
+    /**
      * MIDI Loader / Config
      */
-
     MIDI.loadPlugin({
         USE_XHR: false,
         soundfontUrl: './js/assets/soundfont/',
@@ -495,4 +492,5 @@
         }
     });
 
+    return LeafNote;
 })();

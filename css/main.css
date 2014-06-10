@@ -113,6 +113,10 @@ select {
     text-transform: uppercase;
     line-spacing: -3px;
 }
+.theme1 .ui-dialog-content label {
+    color: #000;
+    text-transform: none;
+}
 
 .theme1 .logo {
     position: absolute;
