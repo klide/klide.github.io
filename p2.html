@@ -39,9 +39,7 @@
         <div id="leafNoteApp">
             <div class="live-play-screen">
                 
-                <!--logo start-->
-                <div class="logo"></div>
-                <!--logo end-->
+
                 
                 <!-- Toolbar start -->
                 <div class="btn-group">
@@ -55,22 +53,51 @@
                 </div>
                 <!-- Toolbar end -->                
                 
-                <div class="pitch-volume-container">
-                    <!--pitch start-->
-                    <div class="pitch-container">
-                        <label for="pitch">Pitch</label>
-                        <input id="pitchSlider" class="pitch-input" type="range" name="pitch" min="0" max="6">
-                    </div>
-                    <!--pitch end-->
+                
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                      Volume <span class="caret"></span>
+                    </button>
+                    
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <div class="pitch-container">
+                            <label for="pitch">Pitch</label>
+                            <input id="pitchSlider" class="pitch-input" type="range" name="pitch" min="0" max="6">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="volume-container">
+                            <i class="icon-volume"></i>
+                            <input id="volumeSlider" class="volume-input" type="range" name="volume" min="0" max="10">
+                            </div>
+                            
+                        </li>
+                        
+                    </ul>
+                    
+                    
+<!--                    <div class="pitch-volume-container">
+                        pitch start
+                        <div class="pitch-container">
+                            <label for="pitch">Pitch</label>
+                            <input id="pitchSlider" class="pitch-input" type="range" name="pitch" min="0" max="6">
+                        </div>
+                        pitch end
 
-                    <!--volume start-->
-                    <div class="volume-container">
-                        <i class="icon-volume"></i>
-                        <input id="volumeSlider" class="volume-input" type="range" name="volume" min="0" max="10">
-                    </div>
-                    <!--volume end-->
+                        volume start
+                        <div class="volume-container">
+                            <i class="icon-volume"></i>
+                            <input id="volumeSlider" class="volume-input" type="range" name="volume" min="0" max="10">
+                        </div>
+                        volume end
+                    </div>-->
                 </div>
                 
+                
+                <!--logo start-->
+                <div class="logo"></div>
+                <!--logo end-->                
                 
 <!--                toolbar start
                 <div class="toolbar">
