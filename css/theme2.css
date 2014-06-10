@@ -1,14 +1,17 @@
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,600,400italic,600italic,700,700italic,800,800italic");
 /** Basic Styling / Global Styles **/
 html {
     height: 100%;
 }
 body {
-    height: inherit;
-    margin: 0px;
-    padding: 0px;
+    /*height: inherit;*/
+/*    margin: 0px;
+    padding: 0px;*/
     font-size: 14px;
-    font-family: Helvetica, Sans-Serif;
-    background: url('../images/gradient.jpg') #322338 0px 0px repeat-x;
+    font-family: 'Open Sans', Sans-Serif;
+    background-color: #1c94c4;
+    
+    /*background: url('../images/gradient.jpg') #322338 0px 0px repeat-x;*/
 }
 .align-center {
     text-align: center;
@@ -34,7 +37,7 @@ select {
 #leafNoteApp {
 
     display: none;
-    border: 1px solid #1c94c4;
+    border: 1px solid black;
     height: 640px;
     width: 960px;
     margin-left: auto;
@@ -64,7 +67,7 @@ select {
 }
 
 /****************************************
-*********** Theme 1 Sample **************
+*********** Theme 2 Sample **************
 *****************************************/
 
 /** Slider Styles **/
@@ -112,7 +115,7 @@ select {
     display: block;
     color: #fff;
     text-transform: uppercase;
-    line-spacing: -3px;
+    /*line-spacing: -3px;*/
 }
 .theme2 .logo {
     /*position: absolute;*/
@@ -121,23 +124,31 @@ select {
     height: 96px;
     background: url('../images/logo.png') top center no-repeat;
     border: 1px solid blueviolet;
+    background-color: inherit;
 }
 .theme2 .live-play-screen {
     width: 640px;
     margin: 0px auto;
 }
 .theme2 .background-gradient {
-    height: inherit;
-    min-height: 400px;  /** Temporary for now **/
-    background: url('../images/background.jpg') top center no-repeat;
+/*    height: inherit;
+    min-height: 400px;  * Temporary for now *
+    background: url('../images/background.jpg') top center no-repeat;*/
 }
 .theme2 .keys-container {
-    position: absolute;
-    
+/*    position: absolute;
+    height: 500px;*/
     text-align: center;
     border: 1px solid yellow;
 }
-
+.theme2 .pitch-volume-container{
+    width: 180px;
+    float: right;
+    height: 80px;
+    position: relative;
+    top: 30px;
+    border: 1px solid white;
+}
 
 
 
@@ -171,9 +182,9 @@ select {
 }
 
 .theme2 .row-a {
-    position:relative;
+/*    position:relative;
     top: 164px;
-    left: 40px;
+    left: 40px;*/
     z-index: 10;
     border: 1px solid red;
     height: 77px;
@@ -202,9 +213,9 @@ select {
 
 
 .theme2 .row-b{
-    position: relative;
+/*    position: relative;
     top: 160px;
-    float: left;
+    float: left;*/
     height: 77px;
     width: 632px;
     border: 1px solid red;
@@ -215,20 +226,22 @@ select {
 
 /** Volume and Pitch Slider Styles **/
 .theme2 .volume-container {
-    float: right;
-    margin: 27px 15px 19px;
+    /*float: right;*/
+    /*width: 100px;*/
+    /*margin: 27px 15px 19px;*/
 /*    position: relative;
     top: 60px;*/
+    /*border: 1px solid #cacaca;*/
 
 }
 .theme2 .volume-container .volume-input {
-    margin-top: 14px;
+    /*margin-top: 14px;*/
 }
 .theme2 .pitch-container {
-    float: left;
+/*    float: left;
     margin: 22px 15px 26px;
-    /*position: absolute;*/
-    top: 56px;
+    position: absolute;
+    top: 56px;*/
 }
 .theme2 .volume-container label,
 .theme2 .pitch-container label {
