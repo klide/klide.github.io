@@ -143,10 +143,10 @@ select {
 }
 .theme2 .pitch-volume-container{
     width: 180px;
-    float: right;
+    /*float: right;*/
     height: 80px;
-    position: relative;
-    top: 30px;
+/*    position: relative;
+    top: 30px;*/
     border: 1px solid white;
 }
 
