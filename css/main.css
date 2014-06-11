@@ -19,6 +19,18 @@ body {
 .pull-left {
     float: left;
 }
+.clearfix {
+    *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    line-height: 0;
+    content: "";
+}
+.clearfix:after {
+    clear: both;
+}
 .shadow {
     box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.3);
 }
@@ -35,8 +47,8 @@ select {
     width: 100%;
 }
 
-#leafNoteApp {
-
+#leafNoteApp,
+#player {
     display: none;
 }
 #loader {
@@ -60,6 +72,17 @@ select {
 }
 #loader .logo-animated {
     margin: 0px 0px -161px -4px;
+}
+
+#player {
+    position: relative;
+    color: #fff;
+    padding: 20px 0px 0px;
+    margin-bottom: -199px;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-right: auto;
 }
 
 /****************************************
@@ -234,6 +257,34 @@ select {
 .theme1 .toolbar #record.active:hover {
     background: linear-gradient(to bottom, rgba(255, 61, 61, 0.65) 0%,rgba(255, 48, 48, 0.8) 50%,rgba(255, 63, 63, 0.92) 51%,rgba(209, 33, 33, 0.89) 100%);
     background: -webkit-linear-gradient(top, rgba(255, 61, 61, 0.65) 0%,rgba(255, 48, 48, 0.8) 50%,rgba(255, 63, 63, 0.92) 51%,rgba(209, 33, 33, 0.89) 100%);
+}
+
+/** Options Styling **/
+.theme1 .options-dialog button {
+    display: block;
+    color: #222;
+    width: 100%;
+    padding: 7px;
+    text-align: left;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, .3);
+    margin-bottom: 8px;
+}
+
+/** Player Styling **/
+#player ul {
+    padding: 0px;
+}
+#player ul li {
+    display: block;
+    background: rgba(255, 255, 255, .3);
+    padding: 12px;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, .3);
+    text-align: left;
+    margin: 0px 0px 2px 0px;
+}
+#player ul li:hover {
+    cursor: pointer;
+    background: rgba(255, 255, 255, .4);
 }
 
 /** jQuery Overrides **/

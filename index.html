@@ -25,11 +25,19 @@
     <!-- PouchDB Plugin -->
     <script src="./js/lib/pouchdb/pouchdb-2.2.3.min.js" type="text/javascript"></script>
 </head>
-<body class="theme1">
+<body id="currentTheme" class="theme1">
     <div class="background-gradient">
         <div id="loader">
             <img class="logo-animated" src="./images/logo-animated.gif" alt="leafNote" />
             <h2>Loading Sound Files...</h2>
+        </div>
+        <div id="player" class="clearfix">
+            <ul>
+                <li>Sample Song</li>
+                <li>Another Song</li>
+                <li>Demo Song</li>
+            </ul>
+            <button id="backToApp">Back</button>
         </div>
         <div id="leafNoteApp">
             <div class="live-play-screen">

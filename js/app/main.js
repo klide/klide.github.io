@@ -36,7 +36,8 @@ var LeafNote = (function () {
             $pitchSlider = $('#pitchSlider'),
             $instrumentSelector = $('#instrumentSelector'),
             $options = $('#options'),
-            $record = $('#record');
+            $record = $('#record'),
+            $backToApp = $('#backToApp');
 
         // Display the leafNote App Container
         $('#leafNoteApp').fadeIn('fast');
@@ -82,7 +83,7 @@ var LeafNote = (function () {
 
         // Options
         $options.on('click', function () {
-            alert('Coming soon!');
+            self.displayOptions();
         });
 
         // Recording Button
@@ -94,6 +95,12 @@ var LeafNote = (function () {
                 $(this).addClass('active');
                 self.startRecording();
             }
+        });
+
+        $backToApp.on('click', function () {
+            $('#leafNoteApp').fadeIn('fast');
+            $('#loader').fadeOut('fast');
+            $('#player').fadeOut('fast');
         });
     };
 
@@ -135,7 +142,7 @@ var LeafNote = (function () {
     };
 
     /**
-     * Start the recording
+     * Start the Recording
      */
     LeafNote.prototype.startRecording = function () {
         var self = this;
@@ -356,6 +363,101 @@ var LeafNote = (function () {
                 $(dialog).remove();
             }
         });
+    };
+
+    /**
+     * Display the Available Options
+     */
+    LeafNote.prototype.displayOptions = function () {
+        var self = this,
+            options = [{
+                id: 'viewPlaylist',
+                name: 'View Playlist'
+            }, {
+                id: 'changeTheme',
+                name: 'Change Theme'
+            }],
+            dialogContent = _.template(
+                '<% _.each(options, function (option) { %>' +
+                    '<button id="<%= option.id %>"><%= option.name %></button>' +
+                '<% }); %>'
+            ),
+            dialog = $('<div/>', {
+                html: dialogContent({options: options}),
+                'class': 'options-dialog'
+            });
+
+        // Display the dialog
+        $(dialog).dialog({
+            title: 'Options',
+            modal: true,
+            open: function () {
+                $.each($(this).find('button'), function (i, button) {
+                    $(button).on('click', function () {
+                        $(this).attr('id') == 'viewPlaylist' ? self.viewPlayList() : self.displayThemeSelector();
+                        $(dialog).dialog('close');
+                    });
+                });
+            },
+            close: function () {
+                $(this).dialog('destroy');
+                $(dialog).remove();
+            }
+        });
+    };
+
+    /**
+     * Display the Theme Selector Dialog
+     */
+    LeafNote.prototype.displayThemeSelector = function () {
+        var themes = [{
+                id: 'theme1',
+                name: 'Theme 1'
+            }, {
+                id: 'theme2',
+                name: 'Theme 2'
+            }],
+            dialogContent = _.template(
+                '<% _.each(themes, function (theme) { %>' +
+                    '<button id="<%= theme.id %>"><%= theme.name %></button>' +
+                '<% }); %>'
+            ),
+            dialog = $('<div/>', {
+                html: dialogContent({themes: themes}),
+                'class': 'options-dialog'
+            });
+
+        // Display the dialog
+        $(dialog).dialog({
+            title: 'Select a Theme',
+            modal: true,
+            buttons: [{
+                text: 'OK',
+                click: function () {
+                    // @TODO - Save the selected theme into the localDB
+                    $(dialog).dialog('close');
+                }
+            }],
+            open: function () {
+                $.each($(this).find('button'), function (i, button) {
+                    $(button).on('click', function () {
+                        $('#currentTheme').attr('class', $(this).attr('id'));
+                    });
+                });
+            },
+            close: function () {
+                $(this).dialog('destroy');
+                $(dialog).remove();
+            }
+        });
+    };
+
+    /**
+     * Display the PlayList
+     */
+    LeafNote.prototype.viewPlayList = function () {
+        $('#player').fadeIn('fast');
+        $('#leafNoteApp').fadeOut('fast');
     };
 
     /**
