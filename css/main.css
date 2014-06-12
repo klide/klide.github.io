@@ -31,8 +31,20 @@ body {
 .clearfix:after {
     clear: both;
 }
+.hide {
+    display: none;
+}
 .shadow {
     box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.3);
+}
+.margin-none {
+    margin: 0px;
+}
+.light-overlay {
+    border: 1px solid rgba(255, 255, 255, .4);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, .2);
+    padding: 18px 0px;
+    background-color: rgba(255, 255, 255, .2);
 }
 
 /** Basic Elements **/
@@ -46,43 +58,83 @@ button:hover {
 select {
     width: 100%;
 }
-
-#leafNoteApp,
-#player {
+#app {
+    position: relative;
+    min-height: 100%;
+}
+#interfaces {
+    position: relative;
+    margin: 0px auto;
+    width: 650px;
+    padding-bottom: 400px;
+}
+#keyboard,
+#player,
+#keyboardTools,
+#playerTools {
     display: none;
+    position: absolute;
 }
 #loader {
-    position: relative;
+    position: absolute;
+    top: 0px;
+    left: 0px;
     text-align: center;
     color: #fff;
+    width: 100%;
     padding: 90px 0px 0px;
-    margin-bottom: -135px;
 }
-#loader h2 {
-    font-weight: normal;
-    font-size: 1.25em;
+#loader div {
     margin: -30px 0px 0px;
-    font-style: italic;
-    border: 1px solid rgba(255, 255, 255, .4);
     border-right: 0px;
     border-left: 0px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, .2);
-    padding: 18px 0px;
-    background: rgba(255, 255, 255, .2);
+}
+#loader h2 {
+    padding: 0px;
+    margin: 0px;
+    font-weight: normal;
+    font-size: 1.25em;
+    font-style: italic;
+    -webkit-animation: pulsate 1.5s linear infinite;
+    transition: width .3s ease;
+    -webkit-transition: width .3s ease;
+}
+@keyframes pulsate {
+    from {
+        opacity: 1;
+        text-shadow: 0px 0px 7px #fff;
+    }
+    50% {
+        opacity: .6;
+        text-shadow: 0px 0px 0px #fff;
+    }
+    to {
+        opacity: 1;
+        text-shadow: 0px 0px 7px #fff;
+    }
+}
+@-webkit-keyframes pulsate {
+    from {
+        opacity: 1;
+        text-shadow: 0px 0px 7px #fff;
+    }
+    50% {
+        opacity: .6;
+        text-shadow: 0px 0px 0px #fff;
+    }
+    to {
+        opacity: 1;
+        text-shadow: 0px 0px 7px #fff;
+    }
 }
 #loader .logo-animated {
     margin: 0px 0px -161px -4px;
 }
 
 #player {
-    position: relative;
     color: #fff;
-    padding: 20px 0px 0px;
-    margin-bottom: -199px;
-    width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-right: auto;
+    padding: 16px 10px 0px;
+    width: inherit;
 }
 
 /****************************************
@@ -110,7 +162,8 @@ select {
 }
 
 /** Form Elements **/
-.theme1 button {
+.theme1 button,
+.theme1 .btn {
     border-radius: 5px;
     border: 1px solid rgba(255, 255, 255, .15);
     color: #fff;
@@ -119,14 +172,26 @@ select {
     background: linear-gradient(to bottom, rgba(255, 230, 245, 0.27) 0%,rgba(230, 220, 240, 0.24) 50%,rgba(255,255,255,0.1) 51%,rgba(255,255,255,0) 100%);
     background: -webkit-linear-gradient(top, rgba(255, 230, 245, 0.27) 0%,rgba(230, 220, 240, 0.24) 50%,rgba(255,255,255,0.1) 51%,rgba(255,255,255,0) 100%);
 }
-.theme1 button:hover {
+.theme1 button:hover,
+.theme1 .btn:hover {
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0.32) 0%,rgba(251, 247, 255, 0.27) 50%,rgba(255,255,255,0.1) 51%,rgba(255,255,255,.03) 100%);
     background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.32) 0%,rgba(251, 247, 255, 0.27) 50%,rgba(255,255,255,0.1) 51%,rgba(255,255,255,.03) 100%);
 }
-.theme1 button:active {
+.theme1 button:active,
+.theme1 .btn:active {
     background: linear-gradient(to bottom, rgba(218, 202, 212, 0.27) 0%,rgba(188, 180, 197, 0.24) 50%,rgba(0, 0, 0, 0.021) 51%,rgba(0, 0, 0, 0.025) 100%);
     background: -webkit-linear-gradient(top, rgba(218, 202, 212, 0.27) 0%,rgba(188, 180, 197, 0.24) 50%,rgba(0, 0, 0, 0.021) 51%,rgba(0, 0, 0, 0.025) 100%);
     box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.2);
+}
+.theme1 .btn-small {
+    padding: 2px;
+    font-size: .8em;
+}
+.theme1 .btn-large {
+    height: 56px;
+    padding-left: 17px;
+    padding-right: 17px;
+    font-size: .95em;
 }
 
 /** Labels **/
@@ -143,12 +208,13 @@ select {
 
 .theme1 .logo {
     position: absolute;
-    margin: 8px 0px 0px 240px;
-    width: 167px;
+    margin: 0px;
+    text-align: center;
+    bottom: 44px;
+    width: 100%;
     height: 96px;
-    background: url('../images/logo.png') top center no-repeat;
 }
-.theme1 .live-play-screen {
+.theme1 #keyboard {
     width: 650px;
     margin: 0px auto;
 }
@@ -160,15 +226,31 @@ select {
 
 .theme1 .background-gradient {
     height: inherit;
-    min-height: 400px;  /** Temporary for now **/
     background: url('../images/background.jpg') top center no-repeat;
+}
+
+/** Circle Styles **/
+.theme1 .circle-large {
+    height: 65px;
+    width: 65px;
+    border-radius: 40px;
+}
+.theme1 .circle-medium {
+    height: 55px;
+    width: 55px;
+    border-radius: 30px;
+}
+.theme1 .circle-small {
+    height: 45px;
+    width: 45px;
+    border-radius: 27px;
 }
 
 /** Keys Styling ***/
 .theme1 .key {
     margin: 0px -1px;
     width: 77px;
-    height: 160px;
+    height: 240px;
     border-radius: 0px 0px 4px 4px;
     border: 1px solid rgba(255, 255, 255, .2);
     background: linear-gradient(to right, rgba(255, 192, 232, 0.1) 0%,rgba(255, 218, 237, 0.1) 50%,rgba(255, 213, 249, 0.28) 50%,rgba(249, 216, 255, 0.28) 100%);
@@ -179,7 +261,7 @@ select {
     background: -webkit-linear-gradient(left, rgba(255, 192, 232, 0.13) 0%,rgba(255, 218, 237, 0.15) 50%,rgba(255, 213, 249, 0.36) 50%,rgba(249, 216, 255, 0.34) 100%);
 }
 .theme1 .row-a .key {
-    height: 90px;
+    height: 140px;
     background: linear-gradient(to right, rgba(197, 159, 191, 0.9) 0%,rgba(195, 158, 186, 0.9) 50%,rgba(209, 176, 202, 0.9) 50%,rgba(207, 185, 200, 0.9) 100%);
     background: -webkit-linear-gradient(left, rgba(197, 159, 191, 0.9) 0%,rgba(195, 158, 186, 0.9) 50%,rgba(209, 176, 202, 0.9) 50%,rgba(207, 185, 200, 0.9) 100%);
 }
@@ -231,20 +313,43 @@ select {
 
 /** Toolbar Styles **/
 .theme1 .toolbar {
-    clear: both;
-    padding: 0px 10px;
-    background: none;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 56px;
+    padding: 7px 0px;
+    background: rgba(255, 218, 251, 0.15);
+    box-shadow: 0px -2px 4px rgba(0, 0, 0, .15);
+}
+.theme1 .toolbar .toolbar-content {
+    display: none;
+    width:630px;
+    margin: 0px auto;
 }
 .theme1 .toolbar .instrument-button {
     width: 374px;
-    height: 66px;
+    height: 56px;
 }
 .theme1 .toolbar #options {
-    margin: 8px 5px 0px;
+    margin: 3px 5px 0px;
+    padding: 0px;
+    position: relative;
+    background-image: none;
+    border: 0px;
 }
 .theme1 .toolbar #options:hover {
     opacity: .7;
     cursor: pointer;
+    background-image: none;
+    border: 0px;
+}
+.theme1 .toolbar #options:active {
+    border: 0px;
+    box-shadow: 0px 0px 0px 0px;
+}
+.theme1 .toolbar #options:disabled {
+    opacity: .6;
+    cursor: default;
 }
 .theme1 .toolbar #record {
     margin: 0px 0px 0px 35px;
@@ -257,6 +362,10 @@ select {
 .theme1 .toolbar #record.active:hover {
     background: linear-gradient(to bottom, rgba(255, 61, 61, 0.65) 0%,rgba(255, 48, 48, 0.8) 50%,rgba(255, 63, 63, 0.92) 51%,rgba(209, 33, 33, 0.89) 100%);
     background: -webkit-linear-gradient(top, rgba(255, 61, 61, 0.65) 0%,rgba(255, 48, 48, 0.8) 50%,rgba(255, 63, 63, 0.92) 51%,rgba(209, 33, 33, 0.89) 100%);
+}
+.theme1 #playerTools {
+    width: inherit;
+    text-align: center;
 }
 
 /** Options Styling **/
@@ -271,10 +380,10 @@ select {
 }
 
 /** Player Styling **/
-#player ul {
+.theme1 #playList ul {
     padding: 0px;
 }
-#player ul li {
+.theme1 #playList ul li {
     display: block;
     background: rgba(255, 255, 255, .3);
     padding: 12px;
@@ -282,9 +391,12 @@ select {
     text-align: left;
     margin: 0px 0px 2px 0px;
 }
-#player ul li:hover {
+.theme1 #playList ul li:hover {
     cursor: pointer;
     background: rgba(255, 255, 255, .4);
+}
+.theme1 #playList {
+    overflow-x: auto;
 }
 
 /** jQuery Overrides **/
@@ -345,6 +457,20 @@ select {
     height: 50px;
     background-position: -84px -20px;
 }
+.theme1 .icon-play {
+    width: 28px;
+    height: 34px;
+    margin-left: 4px;
+    background-position: -22px -118px;
+}
+.theme1 .icon-arrow-right {
+	width: 0;
+	height: 0;
+	border-top: 7px solid transparent;
+	border-bottom: 7px solid transparent;
+	border-left: 7px solid rgba(255, 255, 255, .6);
+    margin-right: 5px;
+}
 
 .theme1 .midi-embed {
     margin: -60px 0px -45px 0px;
@@ -387,7 +513,7 @@ select {
     height: 96px;
     background: url('../images/logo.png') top center no-repeat;
 }
-.theme2 .live-play-screen {
+.theme2 #keyboard {
     width: 650px;
     margin: 0px auto;
 }

@@ -1,28 +1,28 @@
-@media (max-width: 767px) {
+@media (min-width: 768px) and (max-width: 979px) {
     .hidden-desktop {
         display: inherit !important;
     }
     .visible-desktop {
-        display: none !important;
+        display: none !important ;
     }
-    .visible-phone {
+    .visible-tablet {
         display: inherit !important;
     }
-    .hidden-phone {
+    .hidden-tablet {
         display: none !important;
     }
 
     /** Containers **/
     #interfaces {
-        padding-bottom: 318px;
+        padding-bottom: 368px;
     }
 
     /** Keys Styling ***/
     .theme1 .key {
         width: 77px;
-        height: 160px;
+        height: 210px;
     }
     .theme1 .row-a .key {
-        height: 90px;
+        height: 120px;
     }
 }
