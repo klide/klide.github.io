@@ -4,7 +4,9 @@
      */
     LeafNote.Keyboard = function () {
         this.song;
-        this.track;
+        this.track1;
+        this.track2;
+        this.track3;
 
         // Some Basic Default Settings
         this.volume = 200;
@@ -16,13 +18,17 @@
         this.noteDuration = 700;
         this.recordTimer;
         this.startTime = 100;
+        this.clockSpeed = 108;
+        this.clockToTimeConversion = 525 / this.clockSpeed;
         this.recording = false;
 
         // Create a reference to the LeafNote DB
         this.db = LeafNote.db;
 
+        this.logo = $('.logo');
+
         // The KeyPads
-        this.keyPads = $('.play');
+        this.keyPads = $('.key');
 
         // The Keyboard
         this.keyboard = $('#keyboard');
@@ -36,6 +42,7 @@
 
         // The Player Instance
         this.player = new LeafNote.Player();
+        this.player.resetControlbar();
     };
 
     /**
@@ -50,6 +57,7 @@
             $volumeSlider = $('#volumeSlider'),
             $pitchSlider = $('#pitchSlider'),
             $instrumentSelector = $('#instrumentSelector'),
+            $viewPlaylist = $('#viewPlaylist'),
             $options = this.optionButton,
             $record = $('#record'),
             $backToApp = $('#backToApp'),
@@ -93,6 +101,11 @@
         // Instrument Selector
         $instrumentSelector.on('click', function () {
             self.getInstrumentOptions();
+        });
+
+        // Playlist Button
+        $viewPlaylist.on('click', function () {
+            self.viewPlayList();
         });
 
         // Options
@@ -151,7 +164,7 @@
      */
     LeafNote.Keyboard.prototype.recordNote = function (note) {
         // clock: 100, MIDI channel: 0, note: E5, velocity: 127, duration: 50 clocks
-        this.track.addNote(this.startTime, 0, note, 127, 50); // Will need to determine duration
+        this.track3.addNote(this.startTime, 0, note, 127, 50); // Will need to determine duration
     };
 
     /**
@@ -171,17 +184,24 @@
         }, 1);
 
         // Create a MIDI file
-        this.song = new JZZ.MidiFile(1, 108);
+        this.song = new JZZ.MidiFile(1, this.clockSpeed);
 
         // Add MIDI track
-        this.track = new JZZ.MidiFile.MTrk;
+        this.track1 = new JZZ.MidiFile.MTrk; // Name and Tempo
+        this.track2 = new JZZ.MidiFile.MTrk; // Lyrics
+        this.track3 = new JZZ.MidiFile.MTrk; // Music
 
-        // Some Track Metadata (Name, Tempo, etc)
-        this.track.addName(0, 'Sample Song');
+        // Push the tracks into the MIDI file
+        this.song.push(this.track1);
+        this.song.push(this.track2);
+        this.song.push(this.track3);
+
+        // Add titles for each track
+        this.track2.addName(0,'Words');
+        this.track3.addName(0,'Music');
 
         // clock: 0, instrument (hex): 0xc0 0x0b - The hex value 0b is the vibraphone number 11
-        this.track.addMidi(0, 0xc0, this.getHex(self.currentInstrument.id));
-        this.song.push(this.track);
+        this.track3.addMidi(0, 0xc0, getHex(self.currentInstrument.id));
     };
 
     /**
@@ -195,26 +215,21 @@
         this.optionButton.removeAttr('disabled');
 
         // Add a few milliseconds to the end of the MIDI track
-        this.track.setTime(this.startTime + 100);
+        this.track3.setTime(this.startTime + 100);
 
         // Reset some values
         this.recording = false;
         this.startTime = 100;
         clearInterval(this.recordTimer);
 
-        // Convert to Base-64 string then create a data URI so it can be downloaded
-        var b64 = JZZ.MidiFile.toBase64(this.song.dump()),
-            uri = 'data:audio/midi;base64,' + b64;
-
         // Prompt to Save the song locally
-        this.displaySaveDialog(uri);
+        this.displaySaveDialog();
     };
 
     /**
      * Display the Save Dialog so that a name can be entered for the recorded MIDI file
-     * @param {string} uri The URI Data to be saved
      */
-    LeafNote.Keyboard.prototype.displaySaveDialog = function (uri) {
+    LeafNote.Keyboard.prototype.displaySaveDialog = function () {
         var self = this,
             dialogContent = _.template(
                 '<label for="midiname">' +
@@ -233,34 +248,76 @@
             buttons: [{
                 text: 'OK',
                 click: function () {
-                    self.saveFile(uri, $('#midiname').val()).then(function (res) {
-                        console.log(res);
-                        self.player.playSong(res.id);
-                        $(dialog).dialog('close');
-                    }, function (err) {
-                        alert(err.message);
+                    // Get the Song Data (Data URI and Name) then Save it and Play it
+                    self.getSongData($('#midiname').val()).then(function (song) {
+                        // Save the MIDI file, then play it
+                        self.saveFile(song).then(function () {
+                            self.displaySaveConfirmation();
+                            $(dialog).dialog('close');
+                        }, function (err) {
+                            alert(err.message);
+                            $(dialog).dialog('close');
+                        });
                     });
+                }
+            }, {
+                text: 'Discard',
+                click: function () {
+                    $(dialog).dialog('close');
                 }
             }],
             close: function () {
                 $(dialog).dialog('destroy');
                 $(dialog).remove();
                 // Re-enable keydown / keyup binding
-                self.bindKeyDown($('.play'));
+                self.bindKeyDown(self.keyPads);
+            }
+        });
+    };
+
+    /**
+     * Displays the Save Confirmation Message
+     */
+    LeafNote.Keyboard.prototype.displaySaveConfirmation = function () {
+        var self = this,
+            dialog = $('<div/>', {
+                html: '<p>Song saved and added to Playlist</p>'
+            });
+
+        // Display the dialog box for Downloading the MIDI file
+        $(dialog).dialog({
+            title: 'Save Success!',
+            modal: true,
+            buttons: [{
+                text: 'OK',
+                click: function () {
+                    $(dialog).dialog('close');
+                }
+            }],
+            close: function () {
+                $(dialog).dialog('destroy');
+                $(dialog).remove();
+                // Re-enable keydown / keyup binding
+                self.bindKeyDown(self.keyPads);
             }
         });
     };
 
     /**
      * Saves the MIDI file locally
-     * @param  {string} file The URI data
-     * @param  {string} name The Name of the MIDI file to store
+     * @param  {object} song The Song Object to be saved
      * @return {object} Promise
      */
-    LeafNote.Keyboard.prototype.saveFile = function (file, name) {
-        var def = $.Deferred();
-
-        this.db.put({_id: name, name: name, uri: file, type: 'song'}, function (err, res) {
+    LeafNote.Keyboard.prototype.saveFile = function (song) {
+        var def = $.Deferred(),
+            songData = {
+                name: song.name,
+                duration: song.duration,
+                uri: song.uri,
+                b64: song.b64,
+                type: 'song'
+            };
+        this.db.post(songData, function (err, res) {
             if (err) {
                 def.reject(err);
             } else {
@@ -271,19 +328,25 @@
     };
 
     /**
-     * Gets all the stored MIDI files
-     * @TODO - Will use later to display list of recorded MIDI files
+     * Return the Song Data
+     * @param  {string} name The name that will be used as the Track Name
+     * @return {object} Promise
      */
-    LeafNote.Keyboard.prototype.getAllFiles = function () {
-        var def = $.Deferred();
-        this.db.allDocs({include_docs: true, attachments: true}, function (err, res) {
-            if (err) {
-                def.reject(err);
-            } else {
-                def.resolve(res);
-            }
-        });
-        return def.promise();
+    LeafNote.Keyboard.prototype.getSongData = function (name) {
+        var def = $.Deferred(),
+            trackName = name.charAt(0).toUpperCase() + name.slice(1);
+
+        // Add the Entered Name as the MIDI file name
+        this.track1.addName(0, trackName);
+
+        // Create the song data (uri, b64, and name)
+        // Then return it in the form of a Promise
+        return def.resolve({
+            name: trackName,
+            duration: this.track3.getTime() * this.clockToTimeConversion,
+            uri: 'data:audio/midi;base64,' + JZZ.MidiFile.toBase64(this.song.dump()),
+            b64: JZZ.MidiFile.toBase64(this.song.dump())
+        }).promise();
     };
 
     /**
@@ -328,7 +391,7 @@
 
                     // If recording, switch the recorded instrument
                     if (self.recording) {
-                        self.track.addMidi(self.startTime, 0xc0, self.getHex(self.currentInstrument.id));
+                        self.track3.addMidi(self.startTime, 0xc0, getHex(self.currentInstrument.id));
                     }
 
                     $(this).dialog('destroy');
@@ -493,6 +556,7 @@
      * Displays the Keyboard Interface
      */
     LeafNote.Keyboard.prototype.show = function () {
+        this.logo.fadeIn('fast');
         this.bindKeyDown();
         this.keyboard.fadeIn('fast');
         this.keyboardTools.fadeIn('fast');
@@ -564,17 +628,4 @@
         }
         return $(keyPad) || false;
     };
-
-    /**
-     * Gets the HEX value of the Number / id
-     * @return hex value
-     */
-    LeafNote.Keyboard.prototype.getHex = function (id) {
-        var hex = (parseInt(id, 10)).toString(16);
-        if (hex.length < 2) {
-            hex = '0' + hex;
-        }
-        return "0x" + hex;
-    };
-
 })();

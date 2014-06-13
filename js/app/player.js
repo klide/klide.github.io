@@ -6,9 +6,16 @@
         // Create a reference to the LeafNote DB
         this.db = LeafNote.db;
         this.loaded = false;
+        this.logo = $('.logo');
         this.player = $('#player');
         this.playerTools = $('#playerTools');
         this.playList = $('#playList');
+        this.playButton = $('#play');
+        this.scrubber = $('#scrubber');
+        this.time = $('#currentTime');
+        this.isPlaying = false;
+        this.currentTime = 0;
+        this.duration;
     };
 
     /**
@@ -19,24 +26,52 @@
 
         // Display a Loading message
         if (!this.loaded) {
-            this.playList.html('<h2>Loading...</h2>');
+            this.playList.html('<h3 class="light-overlay align-center">Loading...</h3>');
             this.loaded = true;
         }
 
         // Display the Player Interface
         this.show();
 
-        // Get the list of recorded songs and
-        // Display the song or Throw an error message
-        this.getSongs().then(function (rows) {
-            self.displaySongs(_.pluck(rows, 'key'));
-        }, function (err) {
-            alert(err.message);
+        // Load up the playlist
+        this.loadPlaylist();
+
+        // Handle The Play Button
+        this.playButton.on('click', function () {
+            if (self.isPlaying) {
+                MIDI.Player.pause();
+                clearInterval(self.scrubberUpdate);
+                $(this).find('i').toggleClass('icon-pause');
+            } else {
+                MIDI.Player.resume();
+                self.updateControlbar(self.duration);
+            }
+            // Toggle the following
+            self.isPlaying = !self.isPlaying;
         });
 
         // Handle Resizing to Keep Playlist visible
         $(window).resize(function () {
             self.handlePlaylistResize();
+        });
+
+        // Stop ALL songs from playing if the Browser gets refreshed
+        $(window).unload(function () {
+            MIDI.Player.removeListener()
+            self.resetControlbar();
+        });
+    };
+
+    /**
+     * Load up the Playlist
+     */
+    LeafNote.Player.prototype.loadPlaylist = function () {
+        var self = this;
+        // Display the song or Throw an error message
+        this.getSongs().then(function (rows) {
+            self.displaySongs(_.pluck(rows, 'key'));
+        }, function (err) {
+            alert(err.message);
         });
     };
 
@@ -71,8 +106,18 @@
             playList = _.template(
                 '<ul>' +
                     '<% _.each(songs, function (song) { %>' +
-                        '<li class="song" id="<%= song._id %>">' +
-                            '<i class="icon-arrow-right"></i> <%= song.name %>' +
+                        '<li class="song clearfix">' +
+                            '<span class="playlist-title pull-left"><% if (song.name) { %><%= song.name %><% } else { %>No Title<% }; %></span>' +
+                            '<span class="playlist-duration pull-left clear-left">Length: <%= msToTime(song.duration) %></span>' +
+                            '<span class="song-actions">' +
+                                '<a href="<%= song.uri %>" download="<%= song.name %>.midi" class="download">' +
+                                    '<i class="icon-small icon-white icon-download"></i>' +
+                                '</a>' +
+                                '<a href="#" data-id="<%= song._id %>" class="remove">' +
+                                    '<i class="icon-small icon-white icon-trash"></i>' +
+                                '</a>' +
+                                '<button id="<%= song._id %>" class="listen btn-medium btn-primary">Play</button>' +
+                            '</span>' +
                         '</li>' +
                     '<% }); %>' +
                 '</ul>'
@@ -81,17 +126,107 @@
                 '<h3 class="light-overlay align-center">No songs found</h3>'
             );
 
+        // Sort the songs alphabetically (for now)
+        songs = _.sortBy(songs, function (song) {
+            var name = song.name.toUpperCase();
+            return name.charCodeAt() * 1;
+        });
+
+        // Render the Playlist with the data
         this.playList.html(songs.length > 0 ? playList({songs: songs}) : noSongs());
 
         // Play a song when clicked
-        $('.song').on('click', function () {
-            self.playSong($(this).attr('id'));
+        $('.listen').on('click', function () {
+            self.resetControlbar();
+            self.play($(this).attr('id'));
+        });
+
+        // Remove a song
+        $('.remove').on('click', function () {
+            self.removeSong($(this).attr('data-id'));
         });
     };
 
     /**
+     * Plays the Song
+     * @param {string} id The ID of the chosen song to play
+     */
+    LeafNote.Player.prototype.play = function (id) {
+        var self = this;
+
+        // Get the song and render / play it
+        this.db.get(id, function (err, file) {
+            if (!err) {
+                MIDI.Player.loadFile(file.uri, function () {
+                    self.isPlaying = true;
+                    self.currentTime = 0;
+
+                    // Start Playing the MIDI File
+                    MIDI.Player.start();
+
+                    // Update the Scrubber, Time display, and MIDI title
+                    self.updateControlbar(file.duration);
+                });
+            } else {
+                alert('There was a problem playing the song');
+            }
+        });
+    };
+
+    /**
+     * Updates the Scrub Bar according to the song being played
+     * @param {object} duration The song's duration
+     */
+    LeafNote.Player.prototype.updateControlbar = function (duration) {
+        var self = this,
+            interval = 20,
+            endTime = Math.round(duration);
+
+        // Set this property
+        this.duration = endTime;
+
+        // Enable the Scrubber, Timer and Play Button
+        self.scrubber.slider('option', 'disabled', false);
+        this.time.html(msToTime(0)).removeClass('disabled');
+        this.playButton.removeAttr('disabled').find('i').toggleClass('icon-pause');
+
+        // Update the Scrub Bar
+        self.scrubberUpdate = setInterval(function () {
+            self.currentTime = self.currentTime + interval;
+
+            // Moves the scrub bar
+            self.scrubber.slider('option', 'value', Math.round((self.currentTime / endTime) * 100));
+
+            // Update the Timer
+            self.time.html(msToTime(self.currentTime));
+
+            // When the song finishes playing, Stop the Player, Disable the Scrub Bar and Clear the Interval
+            if (self.currentTime > endTime) {
+                self.resetControlbar();
+                clearInterval(self.scrubberUpdate);
+            }
+        }, interval);
+    };
+
+    /**
+     * Stops playing all songs and disables the Scrub Bar
+     */
+    LeafNote.Player.prototype.resetControlbar = function () {
+        MIDI.Player.stop();
+        this.isPlaying = false;
+        this.scrubber.slider({
+            animate: 'fast',
+            value: 0,
+            disabled: true
+        });
+        this.time.html(msToTime(0)).addClass('disabled');
+        this.playButton.attr('disabled', true).find('i').toggleClass('icon-pause', false);
+        clearInterval(this.scrubberUpdate);
+    };
+
+    /**
      * Plays the recorded MIDI file into an embed object in a dialog box
-     * @param {string} fileName The Name of the MIDI File to Output
+     * @param {string} id The ID used to get the File from the local DB so it can be played
      */
     LeafNote.Player.prototype.playSong = function (id) {
         // Get the song and render / play it
@@ -116,10 +251,6 @@
                         $(this).dialog('destroy');
                     }
                 }],
-                open: function () {
-                    // Clear the song
-                    this.song = '';
-                },
                 close: function () {
                     $(this).dialog('destroy');
                     $(dialog).remove();
@@ -128,25 +259,54 @@
         });
     };
 
+    /**
+     * Removes a song by ID
+     * @param {int} id The ID used to remove the song
+     */
+    LeafNote.Player.prototype.removeSong = function (id) {
+        var self = this;
+
+        this.db.get(id, function (err, song) {
+            if (!err) {
+                self.db.remove(song).then(function () {
+                    self.loadPlaylist();
+                });
+            } else {
+                alert('There was a problem deleting the song');
+            }
+        });
+    };
+
+    /**
+     * Handles resizing the Playlist accordingly when the browser is resized
+     */
     LeafNote.Player.prototype.handlePlaylistResize = function () {
         var self = this,
             windowHeight = $(window).innerHeight(),
             interfacesHeight = $('#interfaces').innerHeight();
 
         if (windowHeight > interfacesHeight) {
-            self.playList.height($(window).innerHeight() - 151 + 'px');
+            self.playList.height($(window).innerHeight() - 92 + 'px');
         } else {
-            self.playList.height($('#interfaces').innerHeight() - 151 + 'px');
+            self.playList.height($('#interfaces').innerHeight() - 92 + 'px');
         }
     };
 
+    /**
+     * Show the Player Interface
+     */
     LeafNote.Player.prototype.show = function () {
+        this.logo.fadeOut('fast');
         this.handlePlaylistResize();
         this.playerTools.fadeIn('fast');
         this.player.fadeIn('fast');
     };
 
+    /**
+     * Hides the Player Interface
+     */
     LeafNote.Player.prototype.hide = function () {
+        this.playButton.off('click');
         this.playerTools.fadeOut('fast');
         this.player.fadeOut('fast');
     };
