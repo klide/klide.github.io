@@ -1,20 +1,32 @@
+@import url("http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,600,400italic,600italic,700,700italic,800,800italic");
 /** Basic Styling / Global Styles **/
 html {
     height: 100%;
 }
 body {
-    height: inherit;
-    margin: 0px;
-    padding: 0px;
+    /*height: inherit;*/
+/*    margin: 0px;
+    padding: 0px;*/
     font-size: 14px;
-    font-family: Helvetica, Sans-Serif;
-    background: url('../images/gradient.jpg') #322338 0px 0px repeat-x;
+    font-family: 'Open Sans', Sans-Serif;
+    background-color: #1c94c4;
+    
+    /*background: url('../images/gradient.jpg') #322338 0px 0px repeat-x;*/
 }
 .align-center {
     text-align: center;
 }
+.align-left {
+    text-align: left;
+}
+.align-right {
+    text-align: right;
+}
 .pull-left {
     float: left;
+}
+.pull-right {
+    float: right;
 }
 .shadow {
     box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.3);
@@ -31,10 +43,14 @@ button:hover {
 select {
     width: 100%;
 }
-
 #leafNoteApp {
 
     display: none;
+    /*border: 1px solid black;*/
+    height: 640px;
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
 }
 #loader {
     position: relative;
@@ -60,7 +76,7 @@ select {
 }
 
 /****************************************
-*********** Theme 1 Sample **************
+*********** Theme 2 Sample **************
 *****************************************/
 
 /** Slider Styles **/
@@ -108,61 +124,95 @@ select {
     display: block;
     color: #fff;
     text-transform: uppercase;
-    line-spacing: -3px;
+    /*line-spacing: -3px;*/
 }
-
 .theme2 .logo {
-    position: absolute;
+    /*position: absolute;*/
     margin: 8px 0px 0px 240px;
     width: 167px;
     height: 96px;
     background: url('../images/logo.png') top center no-repeat;
+    /*border: 1px solid blueviolet;*/
+    background-color: inherit;
 }
 .theme2 .live-play-screen {
-    width: 650px;
+    width: 640px;
     margin: 0px auto;
 }
-
-.theme2 .keys-container {
-    position: relative;
-    text-align: center;
-}
-
 .theme2 .background-gradient {
-    height: inherit;
-    min-height: 400px;  /** Temporary for now **/
-    background: url('../images/background.jpg') top center no-repeat;
+/*    height: inherit;
+    min-height: 400px;  * Temporary for now *
+    background: url('../images/background.jpg') top center no-repeat;*/
 }
+.theme2 .keys-container {
+/*    position: absolute;
+    height: 500px;*/
+    position: relative;
+    top: 10px;
+    text-align: center;
+    /*border: 1px solid yellow;*/
+}
+.theme2 .pitch-volume-container{
+    width: 180px;
+    /*float: right;*/
+    height: 80px;
+/*    position: relative;
+    top: 30px;*/
+    /*border: 1px solid white;*/
+}
+
+
 
 /** Keys Styling ***/
 .theme2 .key {
     margin: 0px -1px;
     width: 77px;
-    height: 160px;
-    /*border-radius: 0px 0px 4px 4px;*/
+    height: 77px;
+    border-radius: 80px;
     border: 1px solid rgba(255, 255, 255, .2);
-    background: linear-gradient(to right, rgba(255, 192, 232, 0.1) 0%,rgba(255, 218, 237, 0.1) 50%,rgba(255, 213, 249, 0.28) 50%,rgba(249, 216, 255, 0.28) 100%);
-    background: -webkit-linear-gradient(left, rgba(255, 192, 232, 0.1) 0%,rgba(255, 218, 237, 0.1) 50%,rgba(255, 213, 249, 0.28) 50%,rgba(249, 216, 255, 0.28) 100%);
+    background: white;
+    color: #df5735;
+    
+    /*background: linear-gradient(to right, rgba(255, 192, 232, 0.1) 0%,rgba(255, 218, 237, 0.1) 50%,rgba(255, 213, 249, 0.28) 50%,rgba(249, 216, 255, 0.28) 100%);*/
+    /*background: -webkit-linear-gradient(left, rgba(255, 192, 232, 0.1) 0%,rgba(255, 218, 237, 0.1) 50%,rgba(255, 213, 249, 0.28) 50%,rgba(249, 216, 255, 0.28) 100%);*/
 }
 .theme2 .key:hover {
-    background: linear-gradient(to right, rgba(255, 192, 232, 0.13) 0%,rgba(255, 218, 237, 0.15) 50%,rgba(255, 213, 249, 0.36) 50%,rgba(249, 216, 255, 0.34) 100%);
-    background: -webkit-linear-gradient(left, rgba(255, 192, 232, 0.13) 0%,rgba(255, 218, 237, 0.15) 50%,rgba(255, 213, 249, 0.36) 50%,rgba(249, 216, 255, 0.34) 100%);
+    background: #cacaca;
+    /*background: linear-gradient(to right, rgba(255, 192, 232, 0.13) 0%,rgba(255, 218, 237, 0.15) 50%,rgba(255, 213, 249, 0.36) 50%,rgba(249, 216, 255, 0.34) 100%);*/
+    /*background: -webkit-linear-gradient(left, rgba(255, 192, 232, 0.13) 0%,rgba(255, 218, 237, 0.15) 50%,rgba(255, 213, 249, 0.36) 50%,rgba(249, 216, 255, 0.34) 100%);*/
 }
-.theme2 .row-a .key {
-    height: 90px;
-    background: linear-gradient(to right, rgba(197, 159, 191, 0.9) 0%,rgba(195, 158, 186, 0.9) 50%,rgba(209, 176, 202, 0.9) 50%,rgba(207, 185, 200, 0.9) 100%);
-    background: -webkit-linear-gradient(left, rgba(197, 159, 191, 0.9) 0%,rgba(195, 158, 186, 0.9) 50%,rgba(209, 176, 202, 0.9) 50%,rgba(207, 185, 200, 0.9) 100%);
-}
-.theme2 .row-a .key:hover {
-    background: linear-gradient(to right, rgba(203, 163, 198, 0.94) 0%,rgba(199, 162, 190, 0.96) 50%,rgba(209, 176, 202, 0.96) 50%,rgba(207, 185, 200, 0.93) 100%);
-    background: -webkit-linear-gradient(left, rgba(203, 163, 198, 0.94) 0%,rgba(199, 162, 190, 0.96) 50%,rgba(209, 176, 202, 0.96) 50%,rgba(207, 185, 200, 0.93) 100%);
+.theme2 .key:active,
+.theme2 .key.active{
+/*    background: linear-gradient(to right, rgba(231, 91, 70, 0.95) 0%,rgba(255, 113, 77, 0.9) 50%,rgba(245, 136, 98, 0.95) 50%,rgba(216,130,106,0.90) 100%)!important;
+    background: -webkit-linear-gradient(left, rgba(231, 91, 70, 0.95) 0%,rgba(255, 113, 77, 0.9) 50%,rgba(245, 136, 98, 0.95) 50%,rgba(216,130,106,0.90) 100%)!important;*/
+    clear: both;
+    box-shadow: 0px 0px 30px 1px rgba(255, 255, 255, .4);
+/*    background: rgba(255,255,255,.8);*/
+    
+    
 }
 
 .theme2 .row-a {
-    position:absolute;
-    height: 80px;
-    top: 0px;
-    left: 50px;
+    position:relative;
+/*    top: 164px;*/
+    left: 40px;
+
+    z-index: 10;
+    /*border: 1px solid red;*/
+    height: 77px;
+    width: 474px;
+    
+}
+.theme2 .row-a .key {
+/*    height: 78px;*/
+    background: #000;
+    /*background: linear-gradient(to right, rgba(197, 159, 191, 0.9) 0%,rgba(195, 158, 186, 0.9) 50%,rgba(209, 176, 202, 0.9) 50%,rgba(207, 185, 200, 0.9) 100%);*/
+    /*background: -webkit-linear-gradient(left, rgba(197, 159, 191, 0.9) 0%,rgba(195, 158, 186, 0.9) 50%,rgba(209, 176, 202, 0.9) 50%,rgba(207, 185, 200, 0.9) 100%);*/
+}
+.theme2 .row-a .key:hover {
+    background: #cacaca;
+    /*background: linear-gradient(to right, rgba(203, 163, 198, 0.94) 0%,rgba(199, 162, 190, 0.96) 50%,rgba(209, 176, 202, 0.96) 50%,rgba(207, 185, 200, 0.93) 100%);*/
+    /*background: -webkit-linear-gradient(left, rgba(203, 163, 198, 0.94) 0%,rgba(199, 162, 190, 0.96) 50%,rgba(209, 176, 202, 0.96) 50%,rgba(207, 185, 200, 0.93) 100%);*/
 }
 .theme2 .row-a .key-group {
     float: left;
@@ -172,27 +222,40 @@ select {
     margin-left: 0px;
 }
 
-.theme2 .key:active,
-.theme2 .key.active {
-    background: linear-gradient(to right, rgba(231, 91, 70, 0.95) 0%,rgba(255, 113, 77, 0.9) 50%,rgba(245, 136, 98, 0.95) 50%,rgba(216,130,106,0.90) 100%)!important;
-    background: -webkit-linear-gradient(left, rgba(231, 91, 70, 0.95) 0%,rgba(255, 113, 77, 0.9) 50%,rgba(245, 136, 98, 0.95) 50%,rgba(216,130,106,0.90) 100%)!important;
-    box-shadow: 0px 0px 30px 1px rgba(255, 255, 255, .4);
+
+
+.theme2 .row-b{
+/*    position: relative;
+    top: 160px;
+    float: left;*/
+    height: 77px;
+    width: 632px;
+    /*border: 1px solid red;*/
+        
+    
 }
+
 
 /** Volume and Pitch Slider Styles **/
 .theme2 .volume-container {
-    float: right;
-    margin: 27px 15px 19px;
+    /*float: right;*/
+    /*width: 100px;*/
+    /*margin: 27px 15px 19px;*/
+/*    position: relative;
+    top: 60px;*/
+    /*border: 1px solid #cacaca;*/
+
 }
 .theme2 .volume-container .volume-input {
-    margin-top: 14px;
+    /*margin-top: 14px;*/
 }
-
 .theme2 .pitch-container {
-    float: left;
+/*    float: left;
     margin: 22px 15px 26px;
+    position: absolute;
+    top: 56px;*/
+    width: 200px;
 }
-
 .theme2 .volume-container label,
 .theme2 .pitch-container label {
     font-size: .85em;
@@ -206,6 +269,8 @@ select {
     background: none;
 }
 .theme2 .toolbar .instrument-button {
+/*    position: absolute;
+    top: 0px;*/
     width: 374px;
     height: 66px;
 }
