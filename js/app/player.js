@@ -110,7 +110,7 @@
                             '<span class="playlist-title pull-left"><% if (song.name) { %><%= song.name %><% } else { %>No Title<% }; %></span>' +
                             '<span class="playlist-duration pull-left clear-left">Length: <%= msToTime(song.duration) %></span>' +
                             '<span class="song-actions">' +
-                                '<a href="<%= song.uri %>" download="<%= song.name %>.midi" class="download">' +
+                                '<a href="<%= song.uri %>" target="_blank" download="<%= song.name %>.midi" class="download">' +
                                     '<i class="icon-small icon-white icon-download"></i>' +
                                 '</a>' +
                                 '<a href="#" data-id="<%= song._id %>" class="remove">' +
