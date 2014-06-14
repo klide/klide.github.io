@@ -1,0 +1,294 @@
+/** Theme 3 Styling **/
+.theme3 body {
+    background: -moz-linear-gradient(top, rgba(176,230,255,1) 0%, rgba(227,246,255,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(176,230,255,1)), color-stop(100%,rgba(227,246,255,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(176,230,255,1) 0%,rgba(227,246,255,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(176,230,255,1) 0%,rgba(227,246,255,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(176,230,255,1) 0%,rgba(227,246,255,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(176,230,255,1) 0%,rgba(227,246,255,1) 100%); /* W3C */
+}
+.theme3 .background1 {
+    min-height: 400px;
+    background: url('../images/hills_bg.png') transparent bottom center repeat-x;
+}
+.theme3 .background2 {
+    background-image: none;
+/*    background: url('../images/clouds_bg.png') top center no-repeat;*/
+}
+
+/** Utilities **/
+/** Utilities **/
+.theme3 .light-overlay {
+    border: 0px;
+    background-color: rgba(255, 255, 255, 0.75);
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, .1);
+    color: #222;
+    padding: 18px 0px;
+}
+.theme3 .shadow {
+    box-shadow: none;
+}
+
+/** Logo **/
+.theme3 .logo .logo-image {
+    background: url('../images/logo-green.png') center center no-repeat;
+}
+
+/** Loader **/
+.theme3 #loader div {
+    margin: -10px 0px 0px;
+    border-right: 0px;
+    border-left: 0px;
+    padding: 20px 0px;
+}
+
+/** Button Styles **/
+.theme3 button,
+.theme3 .btn {
+    border: 0px;
+    background-image: none;
+    background-color: rgba(0, 0, 0, .15);
+}
+.theme3 button:hover,
+.theme3 .btn:hover {
+    background-image: none;
+    background-color: rgba(0, 0, 0, .23);
+}
+.theme3 button:active,
+.theme3 .btn:active {
+    background-image: none;
+    background-color: rgba(0, 0, 0, .30);
+    box-shadow: none;
+}
+.theme3 button:disabled:hover {
+    background-image: none;
+    background-color: rgba(0, 0, 0, .15);
+}
+.theme3 .btn-primary,
+.theme3 .ui-widget-header,
+.theme3 .ui-state-default,
+.theme3 .ui-widget-content .ui-state-default,
+.theme3 .ui-widget-header .ui-state-default,
+.theme3 .ui-dialog-content button {
+    background: -webkit-linear-gradient(top, rgba(62, 196, 51, 0.71) 0%,rgba(25, 138, 21, 0.68) 100%);
+    background: linear-gradient(to bottom, rgba(62, 196, 51, 0.71) 0%,rgba(25, 138, 21, 0.68) 100%)
+}
+.theme3 .btn-primary:hover,
+.theme3 .ui-state-default:hover,
+.theme3 .ui-widget-content .ui-state-default:hover,
+.theme3 .ui-widget-header .ui-state-default:hover,
+.theme3 .ui-dialog-content button:hover {
+    background: -webkit-linear-gradient(top, rgba(62, 196, 51, 0.81) 0%,rgba(25, 138, 21, 0.79) 100%);
+    background: linear-gradient(to bottom, rgba(62, 196, 51, 0.81) 0%,rgba(25, 138, 21, 0.79) 100%)
+}
+.theme3 .btn-primary:active,
+.theme3 .ui-state-default:active,
+.theme3 .ui-widget-content .ui-state-default:active,
+.theme3 .ui-widget-header .ui-state-default:active,
+.theme3 .ui-dialog-content button:active {
+    background: -webkit-linear-gradient(top, rgba(62, 196, 51, 0.63) 0%,rgba(25, 138, 21, 0.60) 100%);
+    background: linear-gradient(to bottom, rgba(62, 196, 51, 0.63) 0%,rgba(25, 138, 21, 0.60) 100%)
+}
+
+/** Slider Styles **/
+.theme3 .slider,
+.theme3 .slider.ui-widget-content {
+    display: block;
+    width: 100%;
+    height: 8px;
+}
+.theme3 .ui-slider-handle {
+    top: -.35em;
+    background-image: -webkit-linear-gradient(top, rgba(228, 245, 37, 1) 0%,rgba(183, 235, 18, 1) 100%)!important;
+    background-image: linear-gradient(to bottom, rgba(228, 245, 37, 1) 0%,rgba(183, 235, 18, 1) 100%)!important;
+    background-color: #DFDF0E;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, .1)!important;
+}
+
+/** Key Styles **/
+.theme3 .key {
+    border: 0px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, .1);
+    background: -moz-linear-gradient(top, rgba(121, 185, 255, 0.34) 0%, rgba(171, 255, 160, 0.24) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(121, 185, 255, 0.34)), color-stop(100%,rgba(171, 255, 160, 0.24))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(121, 185, 255, 0.34) 0%,rgba(171, 255, 160, 0.24) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(121, 185, 255, 0.34) 0%,rgba(171, 255, 160, 0.24) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(121, 185, 255, 0.34) 0%,rgba(171, 255, 160, 0.24) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(121, 185, 255, 0.34) 0%,rgba(171, 255, 160, 0.24) 100%); /* W3C */
+}
+.theme3 .row-a .key {
+    border: 0px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, .1);
+    background: -moz-linear-gradient(top, rgba(121, 185, 255, 0.34) 0%, rgba(171, 255, 160, 0.24) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(121, 185, 255, 0.34)), color-stop(100%,rgba(171, 255, 160, 0.24))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(121, 185, 255, 0.34) 0%,rgba(171, 255, 160, 0.24) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(121, 185, 255, 0.34) 0%,rgba(171, 255, 160, 0.24) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(121, 185, 255, 0.34) 0%,rgba(171, 255, 160, 0.24) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(121, 185, 255, 0.34) 0%,rgba(171, 255, 160, 0.24) 100%); /* W3C */
+}
+.theme3 .key:hover,
+.theme3 .row-a .key:hover {
+    background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0.32) 100%); /* FF3.6+ */
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255, 255, 255, 0.32)), color-stop(100%,rgba(255, 255, 255, 0.32))); /* Chrome,Safari4+ */
+    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.32) 0%,rgba(255, 255, 255, 0.32) 100%); /* Chrome10+,Safari5.1+ */
+    background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.32) 0%,rgba(255, 255, 255, 0.32) 100%); /* Opera 11.10+ */
+    background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 0.32) 0%,rgba(255, 255, 255, 0.32) 100%); /* IE10+ */
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.32) 0%,rgba(255, 255, 255, 0.32) 100%); /* W3C */
+}
+.theme3 .keys-container .key:active,
+.theme3 .keys-container .key.active {
+    background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.52) 0%, rgba(255, 255, 255, 0.39) 100%); /* FF3.6+ */
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255, 255, 255, 0.52)), color-stop(100%,rgba(255, 255, 255, 0.39))); /* Chrome,Safari4+ */
+    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.52) 0%,rgba(255, 255, 255, 0.39) 100%); /* Chrome10+,Safari5.1+ */
+    background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.52) 0%,rgba(255, 255, 255, 0.39) 100%); /* Opera 11.10+ */
+    background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 0.52) 0%,rgba(255, 255, 255, 0.39) 100%); /* IE10+ */
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.52) 0%,rgba(255, 255, 255, 0.39) 100%); /* W3C */
+    box-shadow: 0px 0px 30px rgba(255, 255, 255, .9);
+}
+.theme3 .keys-container .key1 {
+    background-color: #DA2727;
+}
+.theme3 .keys-container .key2 {
+    background-color: #F7803D;
+}
+.theme3 .keys-container .key3 {
+    background-color: #E08A2D;
+}
+.theme3 .keys-container .key4 {
+    background-color: #F8CF4F;
+}
+.theme3 .keys-container .key5 {
+    background-color: #D3D334;
+}
+.theme3 .keys-container .key6 {
+    background-color: #63C435;
+}
+.theme3 .keys-container .key7 {
+    background-color: #60DFB6;
+}
+.theme3 .keys-container .key8 {
+    background-color: #26CACA;
+}
+.theme3 .keys-container .key9 {
+    background-color: #6BCEE0;
+}
+.theme3 .keys-container .key10 {
+    background-color: #3881D1;
+}
+.theme3 .keys-container .key11 {
+    background-color: #8090E4;
+}
+.theme3 .keys-container .key12 {
+    background-color: #623DC2;
+}
+.theme3 .keys-container .key13 {
+    background-color: #981EB6;
+}
+
+/** Volume and Pitch Slider Styles **/
+.theme3 .volume-container,
+.theme3 .pitch-container {
+    width: 154px;
+    margin: 22px 15px 19px;
+}
+.theme3 .volume-container {
+    float: right;
+}
+.theme3 .pitch-container {
+    float: left;
+}
+.theme3 .volume-container .slider {
+    float: none;
+    margin-top: 0px;
+    width: 100%;
+}
+.theme3 .volume-container .label,
+.theme3 .pitch-container .label {
+    font-weight: bold;
+    color: rgba(0, 0, 0, .5);
+}
+.theme3 .volume-container i {
+    display: none;
+}
+.theme3 .volume-container .label {
+    display: block;
+}
+
+/** Toolbar **/
+.theme3 .toolbar {
+    background-color: rgb(93, 163, 84);
+}
+.theme3 .toolbar #options {
+    background: none;
+}
+
+/** Player Styles **/
+.theme3 #playerControls {
+    height: 56px;
+    box-shadow: none;
+    border: 0px;
+    background: rgba(0, 0, 0, .15);
+}
+.theme3 #playerControls #scrubber {
+    margin: 24px 20px;
+}
+.theme3 #playerControls #scrubber.ui-widget-content,
+.theme3 .slider,
+.theme3 .slider.ui-widget-content {
+    background: linear-gradient(to right, #86C922, #96E61D);
+    background: -webkit-linear-gradient(left, #86C922, #96E61D);
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, .1);
+}
+.theme3 #playList ul li {
+    background: rgba(255, 255, 255, 0.75);
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, .1);
+    color: #222;
+}
+.theme3 #playList ul li:hover {
+    background: rgba(255, 255, 255, 0.84);
+}
+.theme3 #playList .song-actions a:hover .icon-white {
+    background-image: url("../images/glyphicons-gray.png");
+}
+
+/** Icons **/
+.theme3 [class^="icon-"],
+.theme3 [class*=" icon-"] {
+    background-image: url("../images/sprite-icons-white.png");
+}
+.theme3 .icon-small {
+    background-image: url("../images/glyphicons.png");
+}
+.theme3 .icon-white {
+    background-image: url("../images/glyphicons-white.png");
+}
+.theme3 #playList ul li .icon-white {
+    background-image: url("../images/glyphicons.png");
+}
+.theme3 .icon-play {
+    margin-left: 4px;
+    background-position: -22px -120px;
+}
+.theme3 .icon-pause {
+    background-position: -23px -63px;
+}
+
+/** jQuery Overrides **/
+.theme3 .ui-widget-header {
+    border: 0px;
+}
+.theme3 .ui-widget-content {
+    background-image: none;
+    background-color: #fff;
+}
+.theme3 .ui-dialog-content button {
+    color: #fff;
+    box-shadow: none;
+}
+.theme3 .ui-state-default,
+.theme3 .ui-widget-content .ui-state-default,
+.theme3 .ui-widget-header .ui-state-default {
+    border: 0px;
+    box-shadow: none;
+    color: #fff;
+}

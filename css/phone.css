@@ -12,17 +12,20 @@
         display: none !important;
     }
 
-    /** Containers **/
-    #interfaces {
+    /** Theme 1 Styles **/
+    .theme1 #interfaces {
         padding-bottom: 318px;
     }
-
-    /** Keys Styling ***/
     .theme1 .key {
         width: 77px;
         height: 160px;
     }
     .theme1 .row-a .key {
         height: 90px;
+    }
+
+    /** Theme 3 Styles **/
+    .theme3 .background1 {
+        min-height: 318px;
     }
 }

@@ -25,22 +25,17 @@
         // Create a reference to the LeafNote DB
         this.db = LeafNote.db;
 
+        // Some key elements
         this.logo = $('.logo');
-
-        // The KeyPads
         this.keyPads = $('.key');
-
-        // The Keyboard
         this.keyboard = $('#keyboard');
         this.keyboardTools = $('#keyboardTools');
-
-        // Options button
         this.optionButton = $('#options');
 
-        // The Instruments
+        // Create an instance of Instruments
         this.instruments = new LeafNote.Instruments();
 
-        // The Player Instance
+        // Create an instance of Player
         this.player = new LeafNote.Player();
         this.player.resetControlbar();
     };
@@ -54,14 +49,18 @@
         // Some Elements the User will Interact with
         var $loader = $('#loader'),
             $keyPads = this.keyPads,
-            $volumeSlider = $('#volumeSlider'),
-            $pitchSlider = $('#pitchSlider'),
             $instrumentSelector = $('#instrumentSelector'),
             $viewPlaylist = $('#viewPlaylist'),
             $options = this.optionButton,
             $record = $('#record'),
             $backToApp = $('#backToApp'),
-            $toobar = $('.toolbar-content');
+            $toolbar = $('.toolbar-content');
+
+        // Apply the current theme
+        LeafNote.applyTheme();
+
+        // Create the Sliders
+        this.renderSliders();
 
         // Fade out the Loader and Remove it
         $loader.fadeOut('fast', function () {
@@ -70,7 +69,7 @@
 
         // Display the Keyboard Interface and the Toolbars
         this.show();
-        $toobar.fadeIn('fast');
+        $toolbar.fadeIn('fast');
 
         // For any of the keyPads Play a note when mouse is down
         $keyPads.on('mousedown', function () {
@@ -85,17 +84,6 @@
         // Dims out all the keyPads when the mouse is up at anytime
         $(document).on('mouseup', function () {
             $keyPads.removeClass('active');
-        });
-
-        // Volume Slider
-        $volumeSlider.on('change', function () {
-            self.volume = parseInt($(this).val(), 10) * 25.5;
-        });
-
-        // Pitch Slider
-        $pitchSlider.on('change', function () {
-            self.pitch = (parseInt($(this).val(), 10) - 3) * 12; // Changes Octaves
-            //self.pitch = (parseInt($(this).val(), 10) - 3) * 1; // Changes pitch by 1 step
         });
 
         // Instrument Selector
@@ -246,7 +234,7 @@
             title: 'Save MIDI File',
             modal: true,
             buttons: [{
-                text: 'OK',
+                text: 'Save',
                 click: function () {
                     // Get the Song Data (Data URI and Name) then Save it and Play it
                     self.getSongData($('#midiname').val()).then(function (song) {
@@ -357,11 +345,14 @@
             dialogContent = _.template(
                 '<select id="instrumentOption" data-number="0">' +
                     '<% _.each(availableInstruments, function (instrument) { %>' +
-                        '<option value="<%= instrument.file %>" data-number="<%= instrument.number %>"><%= instrument.name %></option>' +
+                        '<option <% if (selectedInstrument.name == instrument.file) { %>selected="selected" <% } %>value="<%= instrument.file %>" data-number="<%= instrument.number %>"><%= instrument.name %></option>' +
                     '<% }); %>' +
                 '</select>'),
             dialog = $('<div/>', {
-                html: dialogContent({availableInstruments: self.instruments.get()})
+                html: dialogContent({
+                    availableInstruments: self.instruments.get(),
+                    selectedInstrument: self.currentInstrument
+                })
             });
 
         // Display the Dialog to select an instrument from
@@ -413,21 +404,28 @@
      * Display the Available Options
      */
     LeafNote.Keyboard.prototype.displayOptions = function () {
-        var self = this,
-            options = [{
-                id: 'viewPlaylist',
-                name: 'View Playlist'
-            }, {
-                id: 'changeTheme',
-                name: 'Change Theme'
-            }],
-            dialogContent = _.template(
-                '<% _.each(options, function (option) { %>' +
-                    '<button id="<%= option.id %>"><%= option.name %></button>' +
-                '<% }); %>'
+        var options = {
+                themes: [{
+                    id: 'theme1',
+                    name: 'Default Theme'
+                }, {
+                    id: 'theme3',
+                    name: 'Double Rainbow'
+                }]
+            },
+            themeContent = _.template(
+                '<lable for="theme">Select a Theme</label>' +
+                '<select id="themeSelector">' +
+                    '<% _.each(themes, function (theme) { %>' +
+                        '<option <% if (selectedTheme == theme.id) { %>selected="selected" <% } %>value="<%= theme.id %>"><%= theme.name %></option>' +
+                    '<% }); %>' +
+                '</select>'
             ),
             dialog = $('<div/>', {
-                html: dialogContent({options: options}),
+                html: themeContent({
+                    themes: options.themes,
+                    selectedTheme: LeafNote.currentTheme
+                }),
                 'class': 'options-dialog'
             });
 
@@ -435,60 +433,18 @@
         $(dialog).dialog({
             title: 'Options',
             modal: true,
-            open: function () {
-                $.each($(this).find('button'), function (i, button) {
-                    $(button).on('click', function () {
-                        $(this).attr('id') == 'viewPlaylist' ? self.viewPlayList() : self.displayThemeSelector();
-                        $(dialog).dialog('close');
-                    });
-                });
-            },
-            close: function () {
-                $(this).dialog('destroy');
-                $(dialog).remove();
-            }
-        });
-    };
-
-    /**
-     * Display the Theme Selector Dialog
-     */
-    LeafNote.Keyboard.prototype.displayThemeSelector = function () {
-        var themes = [{
-                id: 'theme1',
-                name: 'Theme 1'
-            }, {
-                id: 'theme2',
-                name: 'Theme 2'
-            }],
-            dialogContent = _.template(
-                '<% _.each(themes, function (theme) { %>' +
-                    '<button id="<%= theme.id %>"><%= theme.name %></button>' +
-                '<% }); %>'
-            ),
-            dialog = $('<div/>', {
-                html: dialogContent({themes: themes}),
-                'class': 'options-dialog'
-            });
-
-        // Display the dialog
-        $(dialog).dialog({
-            title: 'Select a Theme',
-            modal: true,
             buttons: [{
-                text: 'OK',
+                text: 'Apply',
                 click: function () {
-                    // @TODO - Save the selected theme into the localDB
-                    $(dialog).dialog('close');
+                    LeafNote.applyTheme($('#themeSelector').val());
+                    $(this).dialog('close');
+                }
+            }, {
+                text: 'Cancel',
+                click: function () {
+                    $(this).dialog('close');
                 }
             }],
-            open: function () {
-                $.each($(this).find('button'), function (i, button) {
-                    $(button).on('click', function () {
-                        $('#currentTheme').attr('class', $(this).attr('id'));
-                    });
-                });
-            },
             close: function () {
                 $(this).dialog('destroy');
                 $(dialog).remove();
@@ -541,6 +497,36 @@
                 self.stopNote(note, $keyDown);
             }
             return false;
+        });
+    };
+
+    /**
+     * Create the Sliders (Pitch and Volume)
+     */
+    LeafNote.Keyboard.prototype.renderSliders = function () {
+        var self = this,
+            $pitchSlider = $('#pitchSlider'),
+            $volumeSlider = $('#volumeSlider');
+
+        // Pitch Slider
+        $pitchSlider.slider({
+            min: 0,
+            max: 6,
+            value: 3,
+            change: function (e, slider) {
+                self.pitch = (parseInt(slider.value, 10) - 3) * 12; // Changes Octaves
+                //self.pitch = (parseInt($(this).val(), 10) - 3) * 1; // Changes pitch by 1 step
+            }
+        });
+
+        // Volume Slider
+        $volumeSlider.slider({
+            min: 0,
+            max: 10,
+            value: 5,
+            change: function (e, slider) {
+                self.volume = parseInt(slider.value, 10) * 25.5;
+            }
         });
     };
 
