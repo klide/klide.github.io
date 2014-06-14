@@ -1,7 +1,7 @@
 <h1>leafNote Project</h1>
 
 <p><strong>Update:</strong> Lots of improvements were made over the past few days! Below are some of the updates:</p>
-<h3>Updates:</h3>
+<h3>Updates (June 14, 2014):</h3>
 <ul>
   <li>Added the ability to live-record anything you play! Just click the little record button and go! Recorded songs are saved locally to your browser database (Don't clear your browser data if you don't want to lose anything!)</li>
   <li>Added the ability to view a "Playlist" of recorded songs / MIDI files. You can browse your songs, play them, download the MIDI file, and remove any unwanted songs.</li>
