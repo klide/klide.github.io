@@ -9,11 +9,12 @@
 }
 .theme3 .background1 {
     min-height: 400px;
-    background: url('../images/hills_bg.png') transparent bottom center repeat-x;
+    background: url('../images/clouds_bg.png') center -20px no-repeat;
+    background-size: 90%;
 }
 .theme3 .background2 {
-    background-image: none;
-/*    background: url('../images/clouds_bg.png') top center no-repeat;*/
+    min-height: 400px;
+    background: url('../images/hills_bg.png') transparent bottom center repeat-x;
 }
 
 /** Utilities **/

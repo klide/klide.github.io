@@ -12,6 +12,10 @@
         display: none !important;
     }
 
+    .theme3 .background1 {
+        background-image: none;
+    }
+
     /** playlist **/
     .theme1 #playList .song-actions a {
         margin: 0px 7px;

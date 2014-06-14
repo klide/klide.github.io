@@ -405,7 +405,7 @@
 }
 
 .theme1 .playlist-title {
-    max-width: 490px;
+    max-width: 483px;
     overflow: hidden;
 }
 .theme1 .playlist-duration {
@@ -418,14 +418,14 @@
     right: 10px;
 }
 .theme1 #playList .song-actions a {
-    margin: 0px 5px;
+    margin: 0px 6px;
     vertical-align: middle
 }
 .theme1 #playList .song-actions a:hover .icon-white {
     background-image: url("../images/glyphicons-white-hover.png");
 }
 .theme1 #playList ul li button {
-    margin: 0px 5px 0px 7px;
+    margin: 0px 5px 0px 10px;
 }
 .theme1 #playerControls {
     width: 457px;
