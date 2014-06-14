@@ -1,7 +1,7 @@
-<h1>leafNote</h1>
+<h1>leafNote Project</h1>
 
-<p><strong>Updates:</strong> Lots of improvements were made over the past few days! Below are some of the updates:</p>
-<h2>Updates:</h2>
+<p><strong>Update:</strong> Lots of improvements were made over the past few days! Below are some of the updates:</p>
+<h3>Updates:</h3>
 <ul>
   <li>Added the ability to live-record anything you play! Just click the little record button and go! Recorded songs are saved locally to your browser database (Don't clear your browser data if you don't want to lose anything!)</li>
   <li>Added the ability to view a "Playlist" of recorded songs / MIDI files. You can browse your songs, play them, download the MIDI file, and remove any unwanted songs.</li>
@@ -10,7 +10,7 @@
 </ul>
 
 <p><strong>Note:</strong> To checkout the application, open index.html. Have fun!</p>
-<h2>Basic Instructions:<h2>
+<h3>Basic Instructions:</h3>
 <ul>
   <li>Play a note by either clicking on a key or by pressing down some keys on your keyboard!</li>
   <li>The keyboard keys are:
