@@ -266,11 +266,10 @@
     background-image: url("../images/glyphicons.png");
 }
 .theme3 .icon-play {
-    margin-left: 4px;
-    background-position: -22px -120px;
+    background-position: -19px -120px;
 }
 .theme3 .icon-pause {
-    background-position: -23px -63px;
+    background-position: -20px -63px;
 }
 
 /** jQuery Overrides **/

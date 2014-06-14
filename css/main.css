@@ -1,6 +1,7 @@
 /** Basic Styling / Global Styles **/
 html {
     height: 100%;
+    min-height: 318px;
 }
 
 /** Default Body Style with No Theme **/

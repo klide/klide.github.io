@@ -203,6 +203,7 @@
 
 .theme1 .background2 {
     height: inherit;
+    min-height: 368px;
     background: url('../images/background.jpg') top center no-repeat;
 }
 
@@ -321,6 +322,7 @@
 .theme1 .toolbar .instrument-button {
     width: 374px;
     height: 56px;
+    margin-right: 20px;
 }
 .theme1 .toolbar #options {
     margin: 7px 5px 0px;
@@ -346,15 +348,17 @@
     cursor: default;
 }
 .theme1 .toolbar #record {
-    margin: 0px 20px 0px 23px;
-    text-align: center;
+    margin: 0px 20px 0px 0px;
+/*    text-align: center;*/
     vertical-align: middle;
 }
 .theme1 .toolbar #record .circle-mini {
     display: inline-block;
+    margin-top: 1px;
+    line-height: 14px;
+    vertical-align: text-top;
     background: rgb(177, 50, 0);
     box-shadow: inset 1px 1px 4px rgba(0, 0, 0, .7);
-    vertical-align: middle;
 }
 .theme1 .toolbar #record.active .circle-mini {
     background: rgb(221, 62, 0);
@@ -400,7 +404,9 @@
 }
 
 .theme1 .playlist-title {
-
+    max-width: 490px;
+    max-height: 15px;
+    overflow: hidden;
 }
 .theme1 .playlist-duration {
     opacity: .6;
@@ -422,11 +428,12 @@
     margin: 0px 7px;
 }
 .theme1 #playerControls {
-    width: 476px;
+    width: 457px;
     height: 54px;
     border: 1px solid rgba(0, 0, 0, .2);
     display: inline-block;
     margin-left: 20px;
+    padding-left: 19px;
     border-radius: 5px;
     box-shadow: inset 0px 0px 5px rgba(0, 0, 0, .3);
     background: rgba(0, 0, 0, .1);
@@ -434,7 +441,7 @@
 .theme1 #playerControls button {
     display: inline-block;
     vertical-align: middle;
-    margin: 2px 0px 0px 19px;
+    margin: 2px 0px 0px 0px;
 }
 .theme1 #playerControls button i {
     width: 25px;
@@ -539,11 +546,10 @@
     background-position: -51px -10px;
 }
 .theme1 .icon-play {
-    margin-left: 4px;
-    background-position: -23px -121px;
+    background-position: -20px -120px;
 }
 .theme1 .icon-pause {
-    background-position: -24px -64px;
+    background-position: -21px -63px;
 }
 .theme1 .icon-stop {
     background-position: -20px -177px;

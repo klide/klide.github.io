@@ -13,6 +13,9 @@
     }
 
     /** Theme 1 Styles **/
+    .theme1 .background2 {
+        min-height: 318px;
+    }
     .theme1 #interfaces {
         padding-bottom: 318px;
     }
