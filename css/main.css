@@ -13,6 +13,9 @@ html {
 .align-center {
     text-align: center;
 }
+.vertical-center {
+    vertical-align: middle;
+}
 .pull-right {
     float: right;
 }

@@ -222,6 +222,7 @@
     height: 40px;
     width: 40px;
     border-radius: 27px;
+    padding: 0px;
 }
 .theme1 .circle-mini {
     height: 20px;
@@ -405,7 +406,6 @@
 
 .theme1 .playlist-title {
     max-width: 490px;
-    max-height: 15px;
     overflow: hidden;
 }
 .theme1 .playlist-duration {
@@ -418,14 +418,14 @@
     right: 10px;
 }
 .theme1 #playList .song-actions a {
-    margin: 0px 4px;
+    margin: 0px 5px;
     vertical-align: middle
 }
 .theme1 #playList .song-actions a:hover .icon-white {
     background-image: url("../images/glyphicons-white-hover.png");
 }
 .theme1 #playList ul li button {
-    margin: 0px 7px;
+    margin: 0px 5px 0px 7px;
 }
 .theme1 #playerControls {
     width: 457px;
@@ -546,10 +546,10 @@
     background-position: -51px -10px;
 }
 .theme1 .icon-play {
-    background-position: -20px -120px;
+    background-position: -20px -121px;
 }
 .theme1 .icon-pause {
-    background-position: -21px -63px;
+    background-position: -21px -64px;
 }
 .theme1 .icon-stop {
     background-position: -20px -177px;

@@ -12,6 +12,17 @@
         display: none !important;
     }
 
+    /** playlist **/
+    .theme1 #playList .song-actions a {
+        margin: 0px 7px;
+    }
+    .theme1 #playList ul li button {
+        margin-left: 13px;
+    }
+    .theme1 .playlist-title {
+        max-width: 473px;
+    }
+
     /** Theme 1 Styles **/
     .theme1 .background2 {
         min-height: 318px;
