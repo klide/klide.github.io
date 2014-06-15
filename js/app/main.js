@@ -24,7 +24,6 @@ LeafNote.getDbName = function () {
             prefix = 'websql://';
         }
     }
-    console.log(prefix + database);
     return prefix + database;
 };
 

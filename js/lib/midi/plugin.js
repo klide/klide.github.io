@@ -158,7 +158,7 @@ var sendRequest = function(queue, instrumentId, format, onprogress) {
 		dom.request({
 			url: soundfontPath,
 			onerror: function(err) {
-				console.log(err);
+//				console.log(err);
 			},
 			onprogress: function(event) {
 				if (!this.totalSize) { // requires server to send Content-Length-Raw (actual bytes non-gzipped)
@@ -186,7 +186,7 @@ var sendRequest = function(queue, instrumentId, format, onprogress) {
 			url: soundfontPath,
 			verify: "MIDI.Soundfont['" + instrumentId + "']",
 			onerror: function(err) {
-				console.log(err);
+//				console.log(err);
 			},
 			callback: function() {
 				queue.next();
@@ -473,7 +473,7 @@ if (window.AudioContext) (function () {
     };
 
 	midi.setEffects = function(list) {
-		if (!ctx.tunajs) return console.log("Effects module not installed.");
+		if (!ctx.tunajs); // return console.log("Effects module not installed.");
 		for (var n = 0; n < list.length; n ++) {
 			var data = list[n];
 			var effect = new ctx.tunajs[data.type](data);
@@ -524,12 +524,12 @@ if (window.AudioContext) (function () {
 				///
 				if (-- bufferPending[instrumentId] === 0) {
 					var percent = index / 87;
-					console.log(MIDI.GM.byId[instrumentId], "processing: ", percent);
+//					console.log(MIDI.GM.byId[instrumentId], "processing: ", percent);
 					soundfont.isLoaded = true;
 					waitForEnd(instrument);
 				}
 			}, function(err) {
-				console.log(err);
+//				console.log(err);
 			});
 		};
 		///
@@ -617,7 +617,7 @@ if (window.Audio) (function () {
 		var audio = audioBuffers[nid];
 		notesOn[ nid ] = instrumentNoteId;
 		if (!root.Soundfont[instrumentId]) {
-			if (root.DEBUG) console.log("404", instrumentId);
+			if (root.DEBUG); //console.log("404", instrumentId);
 			return;
 		}
 		audio.src = root.Soundfont[instrumentId][note.id];
