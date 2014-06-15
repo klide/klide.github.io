@@ -9,7 +9,17 @@ MIDI.loadPlugin({
     callback: function () {
         // Create a new instance of LeafNote() and call init()
         LeafNote.db = new PouchDB(LeafNote.getDbName());
-        var keyboard = new LeafNote.Keyboard();
-        keyboard.init();
+//
+        LeafNote.getDb().then(function () {
+            // Apply the Current theme
+            LeafNote.applyTheme();
+
+            setTimeout(function () {
+                var keyboard = new LeafNote.Keyboard();
+                keyboard.init();
+            }, 1500);
+        });
+//        var keyboard = new LeafNote.Keyboard();
+//        keyboard.init();
     }
 });

@@ -24,12 +24,14 @@ LeafNote.getDbName = function () {
             prefix = 'websql://';
         }
     }
+    console.log(prefix + database);
     return prefix + database;
 };
 
 /**
  * Holds the DB instance
  */
+LeafNote.db;
 //LeafNote.db = (typeof(PouchDB(LeafNote.getDbName())) === "undefined") ? new PouchDB(LeafNote.getDbName()) : PouchDB(LeafNote.getDbName());
 
 /**
@@ -48,7 +50,7 @@ LeafNote.getDb = function () {
  * @param {string} themeId The theme id selected
  */
 LeafNote.applyTheme = function (themeId) {
-    var self = LeafNote,
+    var self = this,
         newTheme = themeId || 'theme1',
         $themeHolderEl = $('#currentTheme'),
         themeClasses;

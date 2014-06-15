@@ -57,7 +57,7 @@
             $toolbar = $('.toolbar-content');
 
         // Apply the current theme
-        LeafNote.applyTheme();
+//        LeafNote.applyTheme();
 
         // Create the Sliders
         this.renderSliders();
