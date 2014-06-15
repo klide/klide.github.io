@@ -2,11 +2,24 @@
  * LeafNote Namespace
  */
 var LeafNote = {
-    // Create the Local leafNote DB Instance, if none exists
-    db: (typeof(PouchDB('leafNote')) === "undefined") ? new PouchDB('leafNote') : PouchDB('leafNote'),
+    // Holds the DB instance
+    db: null,
 
     // Stores the current theme
     currentTheme: '',
+
+    /**
+     * Sets up the Local DB
+     */
+    setupDb: function () {
+        console.log(typeof(PouchDB('leafNote')));
+        if (typeof(PouchDB('leafNote')) === "undefined") {
+            this.db = new PouchDB('leafNote');
+        } else {
+            this.db = PouchDB('leafNote');
+        }
+        return this.db;
+    },
 
     /**
      * Applies the currently selected theme
@@ -69,5 +82,9 @@ var LeafNote = {
     }
 };
 
-// Apply the Current theme
-LeafNote.applyTheme();
+// Setup the DB
+LeafNote.setupDb().then(function (res) {
+    console.log(res);
+    // Apply the Current theme
+    LeafNote.applyTheme();
+});

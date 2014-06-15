@@ -1,4 +1,4 @@
-//(function () {
+(function () {
     /**
      * The leafNote Player
      */
@@ -310,4 +310,4 @@
         this.playerTools.fadeOut('fast');
         this.player.fadeOut('fast');
     };
-//})();
+})();
