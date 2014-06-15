@@ -43,7 +43,7 @@ var LeafNote = {
             }
             self.currentTheme = newTheme;
             $themeHolderEl.attr('class', themeClasses);
-            $themeHolderEl.find('body').fadeIn('fast');
+            $themeHolderEl.find('.background1').fadeIn('fast');
         }, function (err) {
             // If the theme wasn't found, create the theme and use 'theme1' as a default theme
             if (err.status == 404) {

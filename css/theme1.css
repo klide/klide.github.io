@@ -1,6 +1,6 @@
 /** Theme 1 Styling **/
 .theme1 body {
-    display: none;
+/*    display: none;*/
     height: inherit;
     min-width: 650px;
     margin: 0px;
@@ -198,6 +198,7 @@
 }
 
 .theme1 .background1 {
+    display: none;
     height: inherit;
 }
 
