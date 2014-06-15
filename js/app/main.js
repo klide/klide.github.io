@@ -20,6 +20,7 @@ LeafNote.getDbName = function () {
     if (agent.indexOf("Android") >= 0) {
         var version = parseFloat(agent.slice(agent.indexOf("Android") + 8));
         if (version <= 4.3) {
+            alert('You are using the Android ' + version + ' native browser, which is currently not supported. We hope to support it in the near future.');
             prefix = 'websql://';
         }
     }

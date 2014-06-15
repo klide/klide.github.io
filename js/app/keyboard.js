@@ -159,12 +159,14 @@
      * Start the Recording
      */
     LeafNote.Keyboard.prototype.startRecording = function () {
-        var self = this;
+        var self = this,
+            $viewPlaylist = $('#viewPlaylist');
 
         this.recording = true;
 
-        // Disable the Options Button
+        // Disable the Options and Playlist Button
         this.optionButton.attr('disabled', true);
+        $viewPlaylist.attr('disabled', true);
 
         // Keep track of the current time / clock
         this.recordTimer = setInterval(function () {
@@ -196,11 +198,14 @@
      * Stop the recording and output the MIDI file
      */
     LeafNote.Keyboard.prototype.stopRecording = function () {
+        var $viewPlaylist = $('#viewPlaylist');
+
         // Remove keydown and keyup binding, temporarily
         this.unbindKeyDown();
 
         // Re-Enable the Options Button
         this.optionButton.removeAttr('disabled');
+        $viewPlaylist.removeAttr('disabled');
 
         // Add a few milliseconds to the end of the MIDI track
         this.track3.setTime(this.startTime + 100);

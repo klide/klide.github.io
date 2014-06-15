@@ -11,6 +11,7 @@
         this.playerTools = $('#playerTools');
         this.playList = $('#playList');
         this.playButton = $('#play');
+        this.recordButton = $('#record');
         this.scrubber = $('#scrubber');
         this.time = $('#currentTime');
         this.isPlaying = false;
@@ -42,9 +43,11 @@
                 MIDI.Player.pause();
                 clearInterval(self.scrubberUpdate);
                 $(this).find('i').toggleClass('icon-pause');
+                self.recordButton.removeAttr('disabled');
             } else {
                 MIDI.Player.resume();
                 self.updateControlbar(self.duration);
+                self.recordButton.attr('disabled', true);
             }
             // Toggle the following
             self.isPlaying = !self.isPlaying;
@@ -189,6 +192,7 @@
         self.scrubber.slider('option', 'disabled', false);
         this.time.html(msToTime(0)).removeClass('disabled');
         this.playButton.removeAttr('disabled').find('i').toggleClass('icon-pause');
+        this.recordButton.attr('disabled', true);
 
         // Update the Scrub Bar
         self.scrubberUpdate = setInterval(function () {
@@ -221,6 +225,7 @@
         });
         this.time.html(msToTime(0)).addClass('disabled');
         this.playButton.attr('disabled', true).find('i').toggleClass('icon-pause', false);
+        this.recordButton.removeAttr('disabled');
         clearInterval(this.scrubberUpdate);
     };
 
