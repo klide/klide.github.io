@@ -54,7 +54,7 @@ LeafNote.applyTheme = function (themeId) {
         themeClasses;
 
     // Update the selected theme in localDb
-    this.db.get('theme').then(function (theme) {
+    LeafNote.db.get('theme').then(function (theme) {
         // If no theme was provided, use the theme from localDb
         if (!themeId) {
             newTheme = theme.currentTheme;
