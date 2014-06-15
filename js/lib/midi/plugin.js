@@ -348,7 +348,6 @@ if (window.AudioContext) (function () {
 		var bufferId = instrument + "" + noteId;
 		var buffer = audioBuffers[bufferId];
 		if (!buffer) {
-			console.log(MIDI.GM.byId[instrument].id, instrument, channelId);
 			return;
 		}
 
