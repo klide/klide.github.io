@@ -1,4 +1,4 @@
-(function () {
+//(function () {
     /**
      * A List of the Available Instruments
      */
@@ -113,4 +113,4 @@
     LeafNote.Instruments.prototype.get = function () {
         return this.list;
     }
-})();
+//})();

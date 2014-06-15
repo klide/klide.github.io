@@ -1,4 +1,4 @@
-(function () {
+//(function () {
     /**
      * The LeafNote Keyboard
      */
@@ -614,4 +614,4 @@
         }
         return $(keyPad) || false;
     };
-})();
+//})();
