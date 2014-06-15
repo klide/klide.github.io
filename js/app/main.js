@@ -12,8 +12,8 @@ var LeafNote = {
      * Sets up the Local DB
      */
     setupDb: function () {
-        console.log(typeof(PouchDB('leafNote')));
-        if (typeof(PouchDB('leafNote')) === "undefined") {
+        console.log(PouchDB);
+        if (!PouchDB('leafNote')) {
             this.db = new PouchDB('leafNote');
         } else {
             this.db = PouchDB('leafNote');
