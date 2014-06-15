@@ -82,7 +82,7 @@ var LeafNote = {
 };
 
 // Setup the DB
-LeafNote.getDb().then(function (res) {
-    // Apply the Current theme
-    LeafNote.applyTheme();
-});
+//LeafNote.getDb().then(function () {
+//    // Apply the Current theme
+//    LeafNote.applyTheme();
+//});
