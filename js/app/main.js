@@ -3,7 +3,7 @@
  */
 var LeafNote = {
     // Holds the DB instance
-    db: null,
+    db: (typeof(PouchDB('leafNote')) === "undefined") ? new PouchDB('leafNote') : PouchDB('leafNote'),
 
     // Stores the current theme
     currentTheme: '',
@@ -12,7 +12,6 @@ var LeafNote = {
      * Sets up the Local DB
      */
     setupDb: function () {
-        console.log(PouchDB);
         if (!PouchDB('leafNote')) {
             this.db = new PouchDB('leafNote');
         } else {
