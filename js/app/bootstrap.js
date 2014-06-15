@@ -14,10 +14,10 @@ MIDI.loadPlugin({
             // Apply the Current theme
 //            LeafNote.applyTheme();
 
-            setTimeout(function () {
+//            setTimeout(function () {
                 var keyboard = new LeafNote.Keyboard();
                 keyboard.init();
-            }, 1500);
+//            }, 1500);
         });
 //        var keyboard = new LeafNote.Keyboard();
 //        keyboard.init();
