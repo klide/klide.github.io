@@ -26,7 +26,7 @@ var LeafNote = {
                 return true;
             }
             return self.db.put({'currentTheme': newTheme}, 'theme', theme._rev);
-        }).then(function (res) {
+        }).then(function () {
             // After saving the selected theme, apply it
             switch (newTheme) {
                 case 'theme1':
@@ -43,7 +43,7 @@ var LeafNote = {
             }
             self.currentTheme = newTheme;
             $themeHolderEl.attr('class', themeClasses);
-            $themeHolderEl.find('.background1').fadeIn('fast');
+            $themeHolderEl.find('body').fadeIn('fast');
         }, function (err) {
             // If the theme wasn't found, create the theme and use 'theme1' as a default theme
             if (err.status == 404) {
@@ -52,6 +52,8 @@ var LeafNote = {
                     currentTheme: newTheme
                 }).then(function () {
                     self.applyTheme(newTheme);
+                }, function (err) {
+                    alert(err.message);
                 });
             } else {
                 alert('There was a problem applying the selected theme');
