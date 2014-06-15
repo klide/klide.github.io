@@ -20,7 +20,7 @@ LeafNote.getDbName = function () {
     if (agent.indexOf("Android") >= 0) {
         var version = parseFloat(agent.slice(agent.indexOf("Android") + 8));
         if (version <= 4.3) {
-//            alert('You are using the Android ' + version + ' native browser, which is currently not supported. We hope to support it in the near future.');
+            alert('You are using the Android ' + version + ' native browser, which is currently not supported. We hope to support it in the near future.');
             prefix = 'websql://';
         }
     }
@@ -30,8 +30,7 @@ LeafNote.getDbName = function () {
 /**
  * Holds the DB instance
  */
-LeafNote.db;
-//LeafNote.db = (typeof(PouchDB(LeafNote.getDbName())) === "undefined") ? new PouchDB(LeafNote.getDbName()) : PouchDB(LeafNote.getDbName());
+LeafNote.db = (typeof(PouchDB(LeafNote.getDbName())) === "undefined") ? new PouchDB(LeafNote.getDbName()) : PouchDB(LeafNote.getDbName());
 
 /**
  * Sets up the Local DB
@@ -49,7 +48,7 @@ LeafNote.getDb = function () {
  * @param {string} themeId The theme id selected
  */
 LeafNote.applyTheme = function (themeId) {
-    var self = this,
+    var self = LeafNote,
         newTheme = themeId || 'theme1',
         $themeHolderEl = $('#currentTheme'),
         themeClasses;
@@ -107,7 +106,7 @@ LeafNote.getCurrentTheme = function () {
 /**
  * Get the DB Instance, then Apply the Theme to startup the App
  */
-//LeafNote.getDb().then(function () {
-//    // Apply the Current theme
-//    LeafNote.applyTheme();
-//});
+LeafNote.getDb().then(function () {
+    // Apply the Current theme
+    LeafNote.applyTheme();
+});
