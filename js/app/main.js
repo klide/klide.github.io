@@ -9,28 +9,30 @@ var LeafNote = {};
 LeafNote.currentTheme = '';
 
 /**
- * Determines the localDb name. Will add a prefix of 'websql://' if the client is
- * an Android client versioin 4.3 and below
+ * The leafNote DB name
  */
-LeafNote.getDbName = function () {
-    var prefix = '',
-        database = 'leafNote',
-        agent = navigator.userAgent;
+LeafNote.databaseName = 'leafNote';
 
-    if (agent.indexOf("Android") >= 0) {
-        var version = parseFloat(agent.slice(agent.indexOf("Android") + 8));
-        if (version <= 4.3) {
-            alert('You are using ' + agent + ', which is currently not supported. We hope to support it in the near future.');
-            prefix = 'websql://';
+/**
+ * Checks for browser support
+ */
+LeafNote.checkForClientSupport = function () {
+    var agent = navigator.userAgent;
+
+    // Look for the Default Android Browser - It doesn't like WebSQL so it won't support the App
+    if (agent.indexOf("like Gecko) Version") >= 0) {
+        var version = parseFloat(agent.slice(agent.indexOf("like Gecko) Version") + 20));
+
+        if (version <= 4.0) {
+            alert('You are using an Android browser which is currently not supported. We hope to support it in the near future. In the meantime, we recommend using the Google Chrome app for Android.');
         }
     }
-    return database;
 };
 
 /**
  * Holds the DB instance
  */
-LeafNote.db = (typeof(PouchDB(LeafNote.getDbName())) === "undefined") ? new PouchDB(LeafNote.getDbName()) : PouchDB(LeafNote.getDbName());
+LeafNote.db = (typeof(PouchDB(LeafNote.databaseName)) === "undefined") ? new PouchDB(LeafNote.databaseName) : PouchDB(LeafNote.databaseName);
 
 /**
  * Sets up the Local DB
@@ -103,9 +105,10 @@ LeafNote.getCurrentTheme = function () {
     return LeafNote.currentTheme;
 };
 
-/**
- * Get the DB Instance, then Apply the Theme to startup the App
- */
+// Check for Browser Support
+LeafNote.checkForClientSupport();
+
+// Get the DB Instance, then Apply the Theme to startup the App
 LeafNote.getDb().then(function () {
     // Apply the Current theme
     LeafNote.applyTheme();
