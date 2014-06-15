@@ -12,7 +12,7 @@ MIDI.loadPlugin({
 //
         LeafNote.getDb().then(function () {
             // Apply the Current theme
-            LeafNote.applyTheme();
+//            LeafNote.applyTheme();
 
             setTimeout(function () {
                 var keyboard = new LeafNote.Keyboard();
