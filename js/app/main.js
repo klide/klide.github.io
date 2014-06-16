@@ -20,7 +20,7 @@ LeafNote.isSupportedBrowser = function () {
     var agent = navigator.userAgent,
         blockedAgents = [{
             name: 'Internet Explorer',
-            supportedVersion: 10,
+            supportedVersion: 9,
             agentString: 'MSIE'
         }, {
             name: 'Android browser',
@@ -28,7 +28,7 @@ LeafNote.isSupportedBrowser = function () {
             agentString: 'like Gecko) Version'
         }, {
             name: 'Opera browser',
-            supportedVersion: 21,
+            supportedVersion: 20,
             agentString: 'Opera'
         }];
 
