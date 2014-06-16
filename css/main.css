@@ -10,6 +10,49 @@ html {
     display: none;
 }
 
+/** Unsupported Message background **/
+.noSupport body {
+    height: inherit;
+    margin: 0px;
+    padding: 0px;
+}
+.unsupported-browser {
+    height: inherit;
+    min-width: 650px;
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+    font-family: Helvetica, Sans-Serif;
+    background: url('../images/gradient.jpg') #322338 0px 0px repeat-x;
+}
+.unsupported-browser .background {
+    height: inherit;
+    min-height: 318px;
+    background: url('../images/background.jpg') top center no-repeat;
+}
+.unsupported-browser .background div,
+.simple-logo {
+    position: absolute;
+    width: 100%;
+    min-width: 650px;
+}
+.unsupported-browser .background div {
+    margin-top: 140px;
+}
+.unsupported-browser .background p {
+    text-align: center;
+    margin: 0px;
+    padding: 30px;
+    background: rgba(255, 255, 255, .2);
+    font-size: 1.3em;
+    color: #fff;
+}
+
+.simple-logo {
+    height: 150px;
+    background: url('../images/logo-simple.png') center 20px no-repeat;
+}
+
 /** Audio Tags **/
 audio {
     height: 0px;
