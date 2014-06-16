@@ -43,6 +43,9 @@ LeafNote.isSupportedBrowser = function () {
             }
         }
     }
+    if (agent.indexOf('like Gecko) Version') >= 0) {
+        LeafNote.databaseName = 'websql://leafNote';
+    }
     return true;
 };
 
