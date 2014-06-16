@@ -414,6 +414,9 @@
                     id: 'theme1',
                     name: 'Default Theme'
                 }, {
+                    id: 'theme2',
+                    name: 'Bubble Theme'
+                }, {
                     id: 'theme3',
                     name: 'Double Rainbow'
                 }]

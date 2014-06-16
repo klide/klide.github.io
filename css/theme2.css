@@ -1,26 +1,12 @@
 /** Theme 2 Styling **/
 .theme2 body {
-/*    background: -moz-linear-gradient(top, rgba(176,230,255,1) 0%, rgba(227,246,255,1) 100%);  FF3.6+ 
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(176,230,255,1)), color-stop(100%,rgba(227,246,255,1)));  Chrome,Safari4+ 
-    background: -webkit-linear-gradient(top, rgba(176,230,255,1) 0%,rgba(227,246,255,1) 100%);  Chrome10+,Safari5.1+ 
-    background: -o-linear-gradient(top, rgba(176,230,255,1) 0%,rgba(227,246,255,1) 100%);  Opera 11.10+ 
-    background: -ms-linear-gradient(top, rgba(176,230,255,1) 0%,rgba(227,246,255,1) 100%);  IE10+ 
-    background: linear-gradient(to bottom, rgba(176,230,255,1) 0%,rgba(227,246,255,1) 100%);  W3C */
     background: #fff;
 }
-.theme2 .background1 {
-    min-height: 400px;
-    /*background: none;*/
-    /*background: url('../images/bubbles-bg-grey.png') center repeat;*/
-    /*background-size: 90%;*/
-}
 .theme2 .background2 {
-    min-height: 400px;
-    background: none;
-    /*background: url('../images/hills_bg.png') transparent bottom center repeat-x;*/
+    background: url('../images/bubble-bg-blue.jpg') center center no-repeat;
+    background-size: 100%;
 }
 
-/** Utilities **/
 /** Utilities **/
 .theme2 .light-overlay {
     border: 0px;
@@ -82,7 +68,7 @@
 .theme2 .ui-widget-content .ui-state-default:hover,
 .theme2 .ui-widget-header .ui-state-default:hover,
 .theme2 .ui-dialog-content button:hover {
-    
+
     background: -webkit-linear-gradient(top, rgba(0, 165, 197, 1) 0%,rgba(0, 120, 190, .6) 100%);
     background: linear-gradient(to bottom, rgba(0, 165, 197, 1) 0%,rgba(0, 120, 190, .6) 100%);
 }
@@ -104,10 +90,11 @@
 }
 .theme2 .ui-slider-handle {
     top: -.35em;
-    background-image: -webkit-linear-gradient(top, rgba(0, 165, 197, 1) 0%,rgba(0, 170, 197, .6) 100%)!important;
-    background-image: linear-gradient(to bottom, rgba(0, 165, 197, 1) 0%,rgba(0, 170, 197, .6) 100%)!important;
+
+    background-image: -webkit-linear-gradient(top, rgba(39, 220, 255, 1) 0%,rgba(0, 147, 170, 0.89) 100%)!important;
+    background-image: linear-gradient(to bottom, rgba(39, 220, 255, 1) 0%,rgba(0, 147, 170, 0.89) 100%)!important;
     background-color: #00a5c5;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, .1)!important;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, .1)!important
 }
 
 /** Key Styles **/
@@ -123,7 +110,7 @@
     color: #000;
     font-weight: bold;
     text-transform: none;
-    
+
 /*    height: 80px;*/
     border-radius: 80px;
 }
@@ -131,100 +118,26 @@
     height: 80px !important;
     margin-top: 36px;
     border: 0px;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, .1);
-    background: -moz-linear-gradient(top, rgba(121, 185, 255, 0.34) 0%, rgba(171, 255, 160, 0.24) 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(121, 185, 255, 0.34)), color-stop(100%,rgba(171, 255, 160, 0.24))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, rgba(121, 185, 255, 0.34) 0%,rgba(171, 255, 160, 0.24) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, rgba(121, 185, 255, 0.34) 0%,rgba(171, 255, 160, 0.24) 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, rgba(121, 185, 255, 0.34) 0%,rgba(171, 255, 160, 0.24) 100%); /* IE10+ */
-    background: linear-gradient(to bottom, rgba(121, 185, 255, 0.34) 0%,rgba(171, 255, 160, 0.24) 100%); /* W3C */
-    
-    
+    background: url("../images/bubble-bkeys.png")center no-repeat;
 }
 .theme2 .key:hover,
 .theme2 .row-a .key:hover {
-/*    background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0.32) 100%);  FF3.6+ 
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255, 255, 255, 0.32)), color-stop(100%,rgba(255, 255, 255, 0.32)));  Chrome,Safari4+ 
-    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.32) 0%,rgba(255, 255, 255, 0.32) 100%);  Chrome10+,Safari5.1+ 
-    background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.32) 0%,rgba(255, 255, 255, 0.32) 100%);  Opera 11.10+ 
-    background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 0.32) 0%,rgba(255, 255, 255, 0.32) 100%);  IE10+ 
-    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.32) 0%,rgba(255, 255, 255, 0.32) 100%);  W3C */
     background: url("../images/bubble-bkeys-h.png")center no-repeat;
 }
 
 .theme2 .row-b .key {
     height: 80px;
     margin-top: 100px;
+    background: url("../images/bubble-wkeys.png")center no-repeat;
 }
 .theme2 .row-b .key:hover{
     background: url("../images/bubble-wkeys-h.png")center no-repeat;
-    
+
 }
 
 .theme2 .keys-container .key:active,
 .theme2 .keys-container .key.active {
-/*    background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.52) 0%, rgba(255, 255, 255, 0.39) 100%);  FF3.6+ 
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255, 255, 255, 0.52)), color-stop(100%,rgba(255, 255, 255, 0.39)));  Chrome,Safari4+ 
-    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.52) 0%,rgba(255, 255, 255, 0.39) 100%);  Chrome10+,Safari5.1+ 
-    background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.52) 0%,rgba(255, 255, 255, 0.39) 100%);  Opera 11.10+ 
-    background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 0.52) 0%,rgba(255, 255, 255, 0.39) 100%);  IE10+ 
-    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.52) 0%,rgba(255, 255, 255, 0.39) 100%);  W3C 
-    box-shadow: 0px 0px 30px rgba(255, 255, 255, .9);*/
     background: url("../images/bubble-splat.png")center no-repeat;
-}
-.theme2 .keys-container .key1 {
-    /*background-color: #DA2727;*/
-    background: url("../images/bubble-wkeys.png")center no-repeat;
-    
-
-}
-.theme2 .keys-container .key2 {
-    /*background-color: #F7803D;*/
-    background: url("../images/bubble-bkeys.png")center no-repeat;
-}
-.theme2 .keys-container .key3 {
-    /*background-color: #E08A2D;*/
-    background: url("../images/bubble-wkeys.png")center no-repeat;
-}
-.theme2 .keys-container .key4 {
-    /*background-color: #F8CF4F;*/
-    background: url("../images/bubble-bkeys.png")center no-repeat;
-}
-.theme2 .keys-container .key5 {
-    /*background-color: #D3D334;*/
-    background: url("../images/bubble-wkeys.png")center no-repeat;
-}
-.theme2 .keys-container .key6 {
-    /*background-color: #63C435;*/
-    background: url("../images/bubble-wkeys.png")center no-repeat;
-}
-.theme2 .keys-container .key7 {
-    /*background-color: #60DFB6;*/
-    background: url("../images/bubble-bkeys.png")center no-repeat;
-}
-.theme2 .keys-container .key8 {
-    /*background-color: #26CACA;*/
-    background: url("../images/bubble-wkeys.png")center no-repeat;
-}
-.theme2 .keys-container .key9 {
-    /*background-color: #6BCEE0;*/
-    background: url("../images/bubble-bkeys.png")center no-repeat;
-}
-.theme2 .keys-container .key10 {
-    /*background-color: #3881D1;*/
-    background: url("../images/bubble-wkeys.png")center no-repeat;
-}
-.theme2 .keys-container .key11 {
-    /*background-color: #8090E4;*/
-    background: url("../images/bubble-bkeys.png")center no-repeat;
-}
-.theme2 .keys-container .key12 {
-    /*background-color: #623DC2;*/
-    background: url("../images/bubble-wkeys.png")center no-repeat;
-}
-.theme2 .keys-container .key13 {
-    /*background-color: #981EB6;*/
-    background: url("../images/bubble-wkeys.png")center no-repeat;
 }
 
 /** Volume and Pitch Slider Styles **/
@@ -282,12 +195,12 @@
     box-shadow: 0px 0px 4px rgba(0, 0, 0, .1);
 }
 .theme2 #playList ul li {
-    background: rgba(255, 255, 255, 0.75);
+    background: rgba(234, 248, 255, 0.41);
     box-shadow: 0px 2px 8px rgba(0, 0, 0, .1);
     color: #222;
 }
 .theme2 #playList ul li:hover {
-    background: rgba(255, 255, 255, 0.84);
+    background: rgba(234, 248, 255, 0.84);
 }
 .theme2 #playList .song-actions a:hover .icon-white {
     background-image: url("../images/glyphicons-gray.png");
