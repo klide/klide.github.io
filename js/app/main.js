@@ -22,11 +22,11 @@ LeafNote.isSupportedBrowser = function () {
             name: 'Internet Explorer',
             supportedVersion: 10,
             agentString: 'MSIE'
-        }, {
+        }, /**{
             name: 'Android browser',
             supportedVersion: 4.0,
             agentString: 'like Gecko) Version'
-        }, {
+        }, **/{
             name: 'Opera browser',
             supportedVersion: 21,
             agentString: 'Opera'
