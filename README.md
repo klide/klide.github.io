@@ -1,5 +1,11 @@
 <h1>leafNote Project</h1>
 
+<h3>Updates (June 16, 2014):</h3>
+<ul>
+  <li>Added a third theme named, "Bubble Theme"</li>
+  <li>Added an "Unsupported Browser" message / page that appears for unsupported browsers</li>
+</ul>
+
 <p><strong>Update:</strong> Lots of improvements were made over the past few days! Below are some of the updates:</p>
 <h3>Updates (June 14, 2014):</h3>
 <ul>
