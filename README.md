@@ -1,12 +1,14 @@
 <h1>leafNote Project</h1>
 
+<p><strong>Update:</strong> Lots of improvements were made over the past few days! Below are some of the updates:</p>
+
 <h3>Updates (June 16, 2014):</h3>
 <ul>
   <li>Added a third theme named, "Bubble Theme"</li>
   <li>Added an "Unsupported Browser" message / page that appears for unsupported browsers</li>
 </ul>
+<p>
 
-<p><strong>Update:</strong> Lots of improvements were made over the past few days! Below are some of the updates:</p>
 <h3>Updates (June 14, 2014):</h3>
 <ul>
   <li>Added the ability to live-record anything you play! Just click the little record button and go! Recorded songs are saved locally to your browser database (Don't clear your browser data if you don't want to lose anything!)</li>
