@@ -60,7 +60,7 @@
 
         // Stop ALL songs from playing if the Browser gets refreshed
         $(window).unload(function () {
-            MIDI.Player.removeListener()
+            MIDI.Player.removeListener();
             self.resetControlbar();
         });
     };

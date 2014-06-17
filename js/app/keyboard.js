@@ -290,8 +290,6 @@
             close: function () {
                 $(dialog).dialog('destroy');
                 $(dialog).remove();
-                // Re-enable keydown / keyup binding
-                self.bindKeyDown(self.keyPads);
             }
         });
     };
